@@ -6,8 +6,8 @@ import importlib.util
 from pathlib import Path
 
 
-_AUDIT_PATH = Path(__file__).resolve().parents[1] / "tools" / "repository_hygiene_audit.py"
-_SPEC = importlib.util.spec_from_file_location("repository_hygiene_audit", _AUDIT_PATH)
+_AUDIT_PATH = Path(__file__).resolve().parents[1] / "tools" / "hygiene_audit.py"
+_SPEC = importlib.util.spec_from_file_location("hygiene_audit", _AUDIT_PATH)
 assert _SPEC and _SPEC.loader
 _AUDIT = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(_AUDIT)
