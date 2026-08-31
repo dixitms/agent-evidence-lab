@@ -80,6 +80,8 @@ See [the privacy model](docs/privacy-model.md) and
 - [Organisation learning model](docs/organisation-learning-model.md) — how
   consented local evidence can become organisation-wide learning without a
   central raw-trace corpus.
+- [Roadmap](docs/roadmap.md) — the path from a local clone to approved,
+  repeatable Tier 2 reporting.
 - [Reference case study](docs/case-study-seeded-policy-loop.md) — an
   end-to-end run whose policy effect was unassessable.
 
