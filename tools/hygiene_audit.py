@@ -205,9 +205,9 @@ def main() -> int:
     except ValueError as exc:
         parser.error(str(exc))
     if not findings:
-        print("repository hygiene audit: PASS")
+        print("hygiene audit: PASS")
         return 0
-    print("repository hygiene audit: FAIL", file=sys.stderr)
+    print("hygiene audit: FAIL", file=sys.stderr)
     for rule_name, relative in findings:
         print(f"{rule_name}: {relative}", file=sys.stderr)
     return 1
