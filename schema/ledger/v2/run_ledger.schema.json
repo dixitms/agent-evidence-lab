@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://agent-policy-lab.local/schema/ledger/v2/run_ledger.schema.json",
-  "title": "Agent Policy Lab run ledger \u2014 v2",
+  "$id": "https://agent-evidence-lab.local/schema/ledger/v2/run_ledger.schema.json",
+  "title": "Agent Evidence Lab run ledger \u2014 v2",
   "description": "Attempt and replacement history for one preregistered study. Deliberately a SEPARATE contract from experiment_run: that schema is frozen with additionalProperties:false, and reopening a frozen data contract to record workflow history would be the wrong trade. Versioned independently because one ledger may describe runs emitted under different event-schema versions. v2.0.0 adds required traceability fields (session_id, workspace, started_at) so any run can be resolved to its transcript, its workspace and its moment without guesswork. Required rather than optional: an entry missing them is the untrackable record the ledger exists to prevent. A MAJOR bump because the requirement is breaking \u2014 no 1.0.0 ledger was ever written, so nothing is stranded.",
   "type": "object",
   "required": [

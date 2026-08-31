@@ -17,15 +17,15 @@ from pathlib import Path
 import pytest
 from jsonschema import Draft202012Validator
 
-from agent_policy_lab.adapter_codex import (
+from agent_evidence_lab.adapter_codex import (
     MissingAnchorCommit,
     UnrecognizedRawType,
     normalize_session,
     raw_class_counts,
     reconcile,
 )
-from agent_policy_lab.snapshot import SessionSnapshot, SnapshotMismatch
-from agent_policy_lab.validators import validate_dataset
+from agent_evidence_lab.snapshot import SessionSnapshot, SnapshotMismatch
+from agent_evidence_lab.validators import validate_dataset
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "fixtures" / "raw" / "codex"

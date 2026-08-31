@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://agent-policy-lab.local/schema/v0.1/experiment_run.schema.json",
-  "title": "Agent Policy Lab experiment run \u2014 v0.1",
+  "$id": "https://agent-evidence-lab.local/schema/v0.1/experiment_run.schema.json",
+  "title": "Agent Evidence Lab experiment run \u2014 v0.1",
   "description": "Run/experiment-arm lineage, kept OUTSIDE agent_event.schema.json by design (added on review \u2014 the original event schema had no way to join events to a treatment arm). One of these per session; every event in that session carries this run's run_id as a foreign key.",
   "type": "object",
   "required": [

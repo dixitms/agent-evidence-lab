@@ -15,18 +15,18 @@ from pathlib import Path
 
 import pytest
 
-from agent_policy_lab.adapter_managed_environment_claude_code import (
+from agent_evidence_lab.adapter_managed_environment_claude_code import (
     normalize_managed_environment_session,
     reconcile,
 )
-from agent_policy_lab.managed_environment_batch_store import (
+from agent_evidence_lab.managed_environment_batch_store import (
     ManagedEnvironmentBatchStore,
     ManagedEnvironmentBatchVerificationError,
     ManagedEnvironmentRunIdCollision,
     ManagedEnvironmentStoreFilesystemError,
 )
-from agent_policy_lab.run_validation import validate_run
-from agent_policy_lab.store import Tier1PathError, build_manifest
+from agent_evidence_lab.run_validation import validate_run
+from agent_evidence_lab.store import Tier1PathError, build_manifest
 
 ROOT = Path(__file__).resolve().parent.parent
 FIXTURE = ROOT / "fixtures" / "raw" / "managed_environment_claude" / "managed_environment_session_shapes.jsonl"
@@ -37,7 +37,7 @@ def _stage_one_run(batch_store, batch_id, source_path, *, run_id):
     """Mirrors managed_environment_calibration_runner's phases 1-5 for one file,
     without going through the full runner — isolates ManagedEnvironmentBatchStore's
     own behavior from the orchestration module's."""
-    from agent_policy_lab.snapshot import SessionSnapshot
+    from agent_evidence_lab.snapshot import SessionSnapshot
 
     snapshot = SessionSnapshot.capture(source_path)
     result = normalize_managed_environment_session(
@@ -72,7 +72,7 @@ def test_creates_mutable_roots_at_0700(tmp_path):
 
 
 def test_same_filesystem_check_can_be_triggered(tmp_path, monkeypatch):
-    import agent_policy_lab.managed_environment_batch_store as mod
+    import agent_evidence_lab.managed_environment_batch_store as mod
 
     real_stat = os.stat
     calls = {"n": 0}
@@ -94,7 +94,7 @@ def test_same_filesystem_check_can_be_triggered(tmp_path, monkeypatch):
 def test_no_bypass_flag_exists_for_the_filesystem_check():
     import inspect
 
-    from agent_policy_lab.managed_environment_batch_store import ManagedEnvironmentBatchStore as CBS
+    from agent_evidence_lab.managed_environment_batch_store import ManagedEnvironmentBatchStore as CBS
 
     params = inspect.signature(CBS.__init__).parameters
     assert set(params) == {"self", "tier1_root"}, (
@@ -321,7 +321,7 @@ def test_list_committed_runs_never_calls_generic_list_runs():
     would false-positive on)."""
     import ast
 
-    import agent_policy_lab.managed_environment_batch_store as mod
+    import agent_evidence_lab.managed_environment_batch_store as mod
 
     tree = ast.parse(Path(mod.__file__).read_text())
     called_names = {
@@ -376,7 +376,7 @@ def test_construction_refuses_a_regular_file_at_the_root_path(tmp_path):
 
 
 def test_staging_batch_root_is_private_before_any_write(tmp_path):
-    from agent_policy_lab.snapshot import SessionSnapshot
+    from agent_evidence_lab.snapshot import SessionSnapshot
 
     store = ManagedEnvironmentBatchStore(tmp_path / "tier1")
     batch_id = str(uuid.uuid4())
@@ -422,7 +422,7 @@ def test_short_writes_are_completed_not_truncated(tmp_path, monkeypatch):
     every call to write at most 5 bytes and confirm the manifest correction
     and the marker -- both written via _atomic_write_json -- still land
     complete and valid."""
-    import agent_policy_lab.managed_environment_batch_store as mod
+    import agent_evidence_lab.managed_environment_batch_store as mod
 
     real_write = os.write
 

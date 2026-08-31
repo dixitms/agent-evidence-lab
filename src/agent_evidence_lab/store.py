@@ -28,9 +28,9 @@ from .snapshot import SessionSnapshot
 # All minor: optional additions, no breaks.
 MANIFEST_VERSION = "1.4.0"
 ARCHIVE_DIRNAME = "raw"
-DEFAULT_ROOT = Path.home() / ".agent-policy-lab" / "raw"
+DEFAULT_ROOT = Path.home() / ".agent-evidence-lab" / "raw"
 
-# This file is src/agent_policy_lab/store.py, so parents[2] is the repo root.
+# This file is src/agent_evidence_lab/store.py, so parents[2] is the repo root.
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
 

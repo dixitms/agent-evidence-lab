@@ -12,17 +12,17 @@ from pathlib import Path
 
 import pytest
 
-from agent_policy_lab.adapter_claude_code import normalize_session as claude_normalize
-from agent_policy_lab.adapter_claude_code import reconcile as claude_reconcile
-from agent_policy_lab.adapter_codex import normalize_session as codex_normalize
-from agent_policy_lab.adapter_codex import reconcile as codex_reconcile
-from agent_policy_lab.run_validation import (
+from agent_evidence_lab.adapter_claude_code import normalize_session as claude_normalize
+from agent_evidence_lab.adapter_claude_code import reconcile as claude_reconcile
+from agent_evidence_lab.adapter_codex import normalize_session as codex_normalize
+from agent_evidence_lab.adapter_codex import reconcile as codex_reconcile
+from agent_evidence_lab.run_validation import (
     UnknownSchemaVersion,
     validate_run,
     validate_stored_run,
 )
-from agent_policy_lab.snapshot import SessionSnapshot
-from agent_policy_lab.store import (
+from agent_evidence_lab.snapshot import SessionSnapshot
+from agent_evidence_lab.store import (
     Tier1PathError,
     Tier1Store,
     build_manifest,

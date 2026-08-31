@@ -14,7 +14,7 @@ import dataclasses
 
 import pytest
 
-from agent_policy_lab.local_discovery_diagnostics import (
+from agent_evidence_lab.local_discovery_diagnostics import (
     DIAGNOSTICS_SPEC,
     SessionDiagnosticInput,
     compute_assistant_token_usage,
@@ -98,7 +98,7 @@ def test_compute_reconciliation_availability_preserved_categories():
 
 
 def test_aggregate_reconciliation_availability_sums_and_recomputes_delta():
-    from agent_policy_lab.local_discovery_diagnostics import _aggregate_reconciliation_availability
+    from agent_evidence_lab.local_discovery_diagnostics import _aggregate_reconciliation_availability
 
     leaf_a = compute_reconciliation_availability(_ctx([], _reconciliation(tool_call={"emitted": 5, "raw": 5})))
     leaf_b = compute_reconciliation_availability(_ctx([], _reconciliation(tool_call={"emitted": 3, "raw": 3})))
@@ -145,7 +145,7 @@ def test_compute_assistant_token_usage_not_reportable_when_all_excluded():
 
 
 def test_aggregate_assistant_token_usage_sums_only_computed_sessions():
-    from agent_policy_lab.local_discovery_diagnostics import _aggregate_assistant_token_usage
+    from agent_evidence_lab.local_discovery_diagnostics import _aggregate_assistant_token_usage
 
     computed_leaf = {"outcome": "computed", "value": {"input_tokens": 150, "output_tokens": 30}}
     other_leaf = {"outcome": "computed", "value": {"input_tokens": 10, "output_tokens": 5}}
@@ -196,7 +196,7 @@ def test_compute_elapsed_event_span_not_reportable_when_timestamp_unavailable():
 
 
 def test_aggregate_elapsed_event_span_is_sum_never_mean_or_single_session():
-    from agent_policy_lab.local_discovery_diagnostics import _aggregate_elapsed_event_span
+    from agent_evidence_lab.local_discovery_diagnostics import _aggregate_elapsed_event_span
 
     leaf_a = {"outcome": "computed", "value": {"elapsed_seconds": 100}}
     leaf_b = {"outcome": "computed", "value": {"elapsed_seconds": 300}}
@@ -236,7 +236,7 @@ def test_compute_compaction_count_is_zero_not_not_reportable_when_absent():
 
 
 def test_aggregate_compaction_count_sums_sessions():
-    from agent_policy_lab.local_discovery_diagnostics import _aggregate_compaction_count
+    from agent_evidence_lab.local_discovery_diagnostics import _aggregate_compaction_count
 
     aggregate = _aggregate_compaction_count(
         {"S1": {"value": {"count": 2}}, "S2": {"value": {"count": 5}}}
@@ -264,7 +264,7 @@ def test_compute_tool_invocation_distribution_counts_and_excludes_unavailable_na
 
 
 def test_aggregate_tool_invocation_distribution_merges_dynamic_keys():
-    from agent_policy_lab.local_discovery_diagnostics import _aggregate_tool_invocation_distribution
+    from agent_evidence_lab.local_discovery_diagnostics import _aggregate_tool_invocation_distribution
 
     leaf_a = {"value": {"Read": 2, "Bash": 1}, "provenance": {"excluded_unknown_tool_name": 1}}
     leaf_b = {"value": {"Read": 1, "Write": 3}, "provenance": {"excluded_unknown_tool_name": 0}}
@@ -303,7 +303,7 @@ def test_compute_paired_tool_outcome_joins_and_excludes():
 
 
 def test_aggregate_paired_tool_outcome_sums_across_sessions():
-    from agent_policy_lab.local_discovery_diagnostics import _aggregate_paired_tool_outcome
+    from agent_evidence_lab.local_discovery_diagnostics import _aggregate_paired_tool_outcome
 
     leaf_a = {"value": {"observed_success": 1, "observed_failure": 1}, "provenance": {"excluded_unknown_success": 2}}
     leaf_b = {"value": {"observed_success": 3, "observed_failure": 0}, "provenance": {"excluded_unknown_success": 1}}

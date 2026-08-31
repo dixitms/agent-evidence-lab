@@ -1,6 +1,6 @@
-# Agent Policy Lab
+# Agent Evidence Lab
 
-Agent Policy Lab is a local-first reference implementation for studying coding
+Agent Evidence Lab is a local-first reference implementation for studying coding
 agent workflows without treating raw traces as a dashboard dataset or a
 developer-performance score.
 

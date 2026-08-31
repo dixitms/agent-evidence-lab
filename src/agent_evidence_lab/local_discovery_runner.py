@@ -34,7 +34,7 @@ from . import local_discovery_report
 from .local_discovery_diagnostics import DIAGNOSTICS_SPEC, SessionDiagnosticInput
 from .snapshot import SessionSnapshot
 
-# This file is src/agent_policy_lab/local_discovery_runner.py, so parents[2] is
+# This file is src/agent_evidence_lab/local_discovery_runner.py, so parents[2] is
 # the repo root -- mirrors local_discovery_report.py's own boundary check,
 # applied here to the *input* side (source_path) as well as the output side.
 _REPO_ROOT = Path(__file__).resolve().parents[2]

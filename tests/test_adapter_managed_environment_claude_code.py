@@ -15,7 +15,7 @@ from pathlib import Path
 import pytest
 from jsonschema import Draft202012Validator
 
-from agent_policy_lab.adapter_managed_environment_claude_code import (
+from agent_evidence_lab.adapter_managed_environment_claude_code import (
     PRESERVED,
     RAW_TYPE_DISPOSITION,
     SYSTEM_SUBTYPE_DISPOSITION,
@@ -25,8 +25,8 @@ from agent_policy_lab.adapter_managed_environment_claude_code import (
     normalize_managed_environment_session,
     reconcile,
 )
-from agent_policy_lab.snapshot import SessionSnapshot, SnapshotMismatch
-from agent_policy_lab.validators import validate_dataset
+from agent_evidence_lab.snapshot import SessionSnapshot, SnapshotMismatch
+from agent_evidence_lab.validators import validate_dataset
 
 ROOT = Path(__file__).resolve().parent.parent
 FIXTURE = ROOT / "fixtures" / "raw" / "managed_environment_claude" / "managed_environment_session_shapes.jsonl"
@@ -397,7 +397,7 @@ def test_parent_uuid_never_referenced_in_adapter_source():
     code would use to read it (`"parentUuid"`, double-quoted, as in
     `rec.get("parentUuid")` or `rec["parentUuid"]`), which must not appear
     anywhere, prose aside."""
-    import agent_policy_lab.adapter_managed_environment_claude_code as mod
+    import agent_evidence_lab.adapter_managed_environment_claude_code as mod
 
     source = Path(mod.__file__).read_text()
     assert '"parentUuid"' not in source

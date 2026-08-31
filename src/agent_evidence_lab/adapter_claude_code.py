@@ -29,9 +29,9 @@ SCHEMA_VERSION = "0.1.1"
 SOURCE_CLIENT = "claude-code"
 
 # Fixed, documented namespace for deterministic event ids. Equal to
-# uuid5(NAMESPACE_DNS, "agent-policy-lab.local") so it is reproducible rather
+# uuid5(NAMESPACE_DNS, "agent-evidence-lab.local") so it is reproducible rather
 # than a magic constant.
-EVENT_ID_NAMESPACE = uuid.UUID("64f66254-faf2-5c58-9026-b9af6abf735c")
+EVENT_ID_NAMESPACE = uuid.UUID("3924bc50-9bd4-50fa-a405-54d22c375082")
 
 # Raw record dispositions, in code. An unrecognized
 # `type` is a hard failure, never a silent default: the entire point of the

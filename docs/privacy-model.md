@@ -1,6 +1,6 @@
 # Privacy model
 
-Agent Policy Lab is designed on the premise that coding-agent traces can
+Agent Evidence Lab is designed on the premise that coding-agent traces can
 contain prompts, source paths, tool arguments, tool output, credentials, and
 other sensitive workspace context. The default is local handling, minimal
 normalisation, and no implicit publication path.

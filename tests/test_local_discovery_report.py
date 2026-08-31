@@ -18,7 +18,7 @@ from pathlib import Path
 import jsonschema
 import pytest
 
-from agent_policy_lab.local_discovery_report import (
+from agent_evidence_lab.local_discovery_report import (
     DEFAULT_ROOT,
     LocalDiscoveryAvailabilityMismatch,
     LocalDiscoveryCoverageMismatch,
@@ -648,7 +648,7 @@ def test_create_report_failed_body_write_marks_index_failed_not_written(tmp_path
 
 
 def test_default_root_matches_documented_location():
-    assert DEFAULT_ROOT == Path.home() / ".agent-policy-lab" / "local_discovery"
+    assert DEFAULT_ROOT == Path.home() / ".agent-evidence-lab" / "local_discovery"
 
 
 # ---------------------------------------------------------------------------
@@ -773,7 +773,7 @@ def test_create_report_refuses_a_regular_file_occupying_the_index_path(tmp_path)
 
 
 def test_write_all_loops_through_a_simulated_short_write(tmp_path, monkeypatch):
-    import agent_policy_lab.local_discovery_report as ldr_module
+    import agent_evidence_lab.local_discovery_report as ldr_module
 
     real_write = os.write
     calls: list[int] = []
@@ -803,7 +803,7 @@ def test_write_all_loops_through_a_simulated_short_write(tmp_path, monkeypatch):
 def test_write_all_refuses_a_zero_write_instead_of_hanging(tmp_path, monkeypatch):
     """os.write() returning 0 means no forward progress is possible -- looping on
     that would hang forever. _write_all must raise instead."""
-    import agent_policy_lab.local_discovery_report as ldr_module
+    import agent_evidence_lab.local_discovery_report as ldr_module
 
     monkeypatch.setattr(ldr_module.os, "write", lambda fd, data: 0)
 
@@ -819,7 +819,7 @@ def test_write_all_refuses_a_zero_write_instead_of_hanging(tmp_path, monkeypatch
 def test_create_report_survives_simulated_short_writes(tmp_path, monkeypatch):
     """End-to-end: create_report still produces a byte-perfect report even when the
     underlying os.write() only ever accepts a handful of bytes per call."""
-    import agent_policy_lab.local_discovery_report as ldr_module
+    import agent_evidence_lab.local_discovery_report as ldr_module
 
     real_write = os.write
 

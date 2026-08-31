@@ -15,13 +15,13 @@ from pathlib import Path
 
 import pytest
 
-from agent_policy_lab.managed_environment_batch_store import ManagedEnvironmentBatchStore
-from agent_policy_lab.managed_environment_calibration_runner import (
+from agent_evidence_lab.managed_environment_batch_store import ManagedEnvironmentBatchStore
+from agent_evidence_lab.managed_environment_calibration_runner import (
     IntakeManifestError,
     load_intake_manifest,
     run_calibration_batch,
 )
-from agent_policy_lab.snapshot import SnapshotMismatch
+from agent_evidence_lab.snapshot import SnapshotMismatch
 
 ROOT = Path(__file__).resolve().parent.parent
 GOOD_FIXTURE = ROOT / "fixtures" / "raw" / "managed_environment_claude" / "managed_environment_session_shapes.jsonl"
@@ -209,7 +209,7 @@ def test_bad_file_alone_also_fails_closed(tmp_path):
 
 
 def test_snapshot_drift_during_reconcile_fails_the_batch(tmp_path, monkeypatch):
-    import agent_policy_lab.managed_environment_calibration_runner as mod
+    import agent_evidence_lab.managed_environment_calibration_runner as mod
 
     good1 = tmp_path / "s1.jsonl"
     good2 = tmp_path / "s2.jsonl"
@@ -247,7 +247,7 @@ def test_snapshot_drift_during_reconcile_fails_the_batch(tmp_path, monkeypatch):
 
 
 def test_run_id_collision_across_batches_refuses_the_second(tmp_path, monkeypatch):
-    import agent_policy_lab.managed_environment_calibration_runner as mod
+    import agent_evidence_lab.managed_environment_calibration_runner as mod
 
     forced_run_id = uuid.UUID("12345678-1234-4123-8123-123456789012")
     forced_batch_id_1 = uuid.UUID("aaaaaaaa-1234-4123-8123-123456789012")
@@ -291,7 +291,7 @@ def test_runner_module_has_no_detector_or_report_imports():
     """Scope guarantee: this module must not import anything from a
     detector or report module -- the whole point of the provisional
     profile is that nothing analyzes its output yet."""
-    import agent_policy_lab.managed_environment_calibration_runner as mod
+    import agent_evidence_lab.managed_environment_calibration_runner as mod
 
     source = Path(mod.__file__).read_text()
     for forbidden in ("detector_", "_report", "export_validator"):
@@ -304,7 +304,7 @@ def test_trace_profile_is_not_a_parameter():
     the hardcoded default stays hardcoded."""
     import inspect
 
-    from agent_policy_lab.managed_environment_calibration_runner import run_calibration_batch
+    from agent_evidence_lab.managed_environment_calibration_runner import run_calibration_batch
 
     params = inspect.signature(run_calibration_batch).parameters
     assert "trace_profile" not in params

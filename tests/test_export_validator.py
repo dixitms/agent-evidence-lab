@@ -15,7 +15,7 @@ from pathlib import Path
 
 import pytest
 
-from agent_policy_lab.export_validator import (
+from agent_evidence_lab.export_validator import (
     ExportRefused,
     HumanSignoff,
     REQUIRED_CHECKLIST,
@@ -255,7 +255,7 @@ def test_refusal_reports_every_reason_not_just_the_first():
 def test_there_is_no_override_or_partial_export():
     """export_run has no force/allow flag, and screening alone does not authorise."""
     import inspect
-    from agent_policy_lab import export_validator as mod
+    from agent_evidence_lab import export_validator as mod
 
     params = set(inspect.signature(mod.export_run).parameters)
     assert not params & {"force", "allow", "override", "skip_checks", "best_effort"}

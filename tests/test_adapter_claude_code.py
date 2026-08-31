@@ -13,13 +13,13 @@ from pathlib import Path
 import pytest
 from jsonschema import Draft202012Validator
 
-from agent_policy_lab.adapter_claude_code import (
+from agent_evidence_lab.adapter_claude_code import (
     UnrecognizedRawType,
     normalize_session,
     raw_class_counts,
     reconcile,
 )
-from agent_policy_lab.validators import validate_dataset
+from agent_evidence_lab.validators import validate_dataset
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "fixtures" / "raw"
@@ -390,7 +390,7 @@ def test_synthetic_model_never_becomes_the_run_model(result):
 
 
 def test_per_class_reconciliation(result):
-    from agent_policy_lab.adapter_claude_code import reconcile
+    from agent_evidence_lab.adapter_claude_code import reconcile
     rep = reconcile(RAW / "session_shapes.jsonl", result)
     bad = {k: v for k, v in rep.items() if not v.get("ok")}
     assert not bad, f"classes failed reconciliation: {bad}"
@@ -398,7 +398,7 @@ def test_per_class_reconciliation(result):
 
 def test_reconciliation_catches_a_compensating_error(result):
     """The exact shape an aggregate ceiling misses."""
-    from agent_policy_lab.adapter_claude_code import reconcile
+    from agent_evidence_lab.adapter_claude_code import reconcile
     events = [dict(e) for e in result.events]
     idx = next(i for i, e in enumerate(events) if e["event_type"] == "tool_result")
     events[idx] = {**events[idx], "event_type": "thinking"}
@@ -417,8 +417,8 @@ def test_reconciliation_catches_a_compensating_error(result):
 
 def test_reconcile_refuses_a_file_that_grew(tmp_path):
     """A live session file grew 898 -> 1,074 lines while it was being read."""
-    from agent_policy_lab.adapter_claude_code import reconcile
-    from agent_policy_lab.snapshot import SnapshotMismatch
+    from agent_evidence_lab.adapter_claude_code import reconcile
+    from agent_evidence_lab.snapshot import SnapshotMismatch
 
     live = tmp_path / "live.jsonl"
     live.write_bytes((RAW / "session_shapes.jsonl").read_bytes())
@@ -439,7 +439,7 @@ def test_reconcile_refuses_a_file_that_grew(tmp_path):
 
 
 def test_preserved_streams_reconcile_too(result):
-    from agent_policy_lab.adapter_claude_code import raw_class_counts, reconcile
+    from agent_evidence_lab.adapter_claude_code import raw_class_counts, reconcile
     raw = raw_class_counts(RAW / "session_shapes.jsonl")
     rep = reconcile(RAW / "session_shapes.jsonl", result)
     assert rep["_preserved"]["ok"]

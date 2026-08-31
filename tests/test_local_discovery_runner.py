@@ -14,10 +14,10 @@ from pathlib import Path
 
 import pytest
 
-import agent_policy_lab.local_discovery_runner as runner_module
-from agent_policy_lab.local_discovery_diagnostics import DiagnosticSpec
-from agent_policy_lab.local_discovery_report import LocalDiscoveryDuplicateReport
-from agent_policy_lab.local_discovery_runner import (
+import agent_evidence_lab.local_discovery_runner as runner_module
+from agent_evidence_lab.local_discovery_diagnostics import DiagnosticSpec
+from agent_evidence_lab.local_discovery_report import LocalDiscoveryDuplicateReport
+from agent_evidence_lab.local_discovery_runner import (
     LocalDiscoveryManifestInvalid,
     LocalDiscoveryRunAborted,
     SessionManifestEntry,

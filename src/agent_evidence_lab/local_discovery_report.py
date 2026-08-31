@@ -159,7 +159,7 @@ def _schema_path() -> Path:
 
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_ROOT = Path.home() / ".agent-policy-lab" / "local_discovery"
+DEFAULT_ROOT = Path.home() / ".agent-evidence-lab" / "local_discovery"
 
 
 class LocalDiscoveryPathError(Exception):

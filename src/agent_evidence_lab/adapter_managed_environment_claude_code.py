@@ -135,7 +135,7 @@ SOURCE_CLIENT = "claude-code"  # unchanged — see module docstring
 # is (source_client, session_id, line_or_offset, json_pointer), and
 # source_client is unchanged here, so reusing the constant keeps ids within
 # the one documented, reproducible scheme rather than forking it.
-EVENT_ID_NAMESPACE = uuid.UUID("64f66254-faf2-5c58-9026-b9af6abf735c")
+EVENT_ID_NAMESPACE = uuid.UUID("3924bc50-9bd4-50fa-a405-54d22c375082")
 
 NORMALIZED = "normalized"
 PRESERVED = "preserved-local-not-normalized"

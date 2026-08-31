@@ -45,7 +45,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Callable
 
-from agent_policy_lab.local_discovery_report import (
+from agent_evidence_lab.local_discovery_report import (
     ENVELOPE_TIMESTAMP_BASIS,
     PAYLOAD_FIELD_STATUS_BASIS,
     RECONCILED_ORDINARY_KEYS,

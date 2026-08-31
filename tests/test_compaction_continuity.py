@@ -4,7 +4,7 @@ import copy
 
 import pytest
 
-from agent_policy_lab.compaction_continuity import (
+from agent_evidence_lab.compaction_continuity import (
     ANNOTATION_OUTCOMES,
     CompactionAnnotationNotExportable,
     CompactionContinuityError,
@@ -406,7 +406,7 @@ def test_an_ordinary_screened_bundle_is_not_mistaken_for_an_annotation():
 
 def test_export_validation_refuses_a_bundle_carrying_an_annotation():
     """The structural export gate catches it independently of the helper."""
-    from agent_policy_lab.export_validator import ExportRefused, validate_export
+    from agent_evidence_lab.export_validator import ExportRefused, validate_export
 
     window = eligible_window()
     bundle = {"bundle_version": "1.0.0", "events": [], "notes": [complete_annotation(window)]}

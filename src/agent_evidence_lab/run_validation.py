@@ -41,7 +41,7 @@ def _schema_root() -> Path:
     for candidate in candidates:
         if candidate.is_dir():
             return candidate
-    raise FileNotFoundError("Agent Policy Lab schemas are not installed")
+    raise FileNotFoundError("Agent Evidence Lab schemas are not installed")
 
 # Event contract version -> directory. Adding a version means adding a row,
 # not widening a glob: an unknown version must fail, not be guessed at.

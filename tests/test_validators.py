@@ -13,8 +13,8 @@ from pathlib import Path
 
 import pytest
 
-from agent_policy_lab.adapter_claude_code import normalize_session
-from agent_policy_lab.validators import validate_dataset
+from agent_evidence_lab.adapter_claude_code import normalize_session
+from agent_evidence_lab.validators import validate_dataset
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "fixtures" / "raw" / "session_shapes.jsonl"

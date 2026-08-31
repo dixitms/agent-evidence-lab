@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://agent-policy-lab.local/schema/v0.1/agent_event.schema.json",
-  "title": "Agent Policy Lab canonical event \u2014 v0.1",
+  "$id": "https://agent-evidence-lab.local/schema/v0.1/agent_event.schema.json",
+  "title": "Agent Evidence Lab canonical event \u2014 v0.1",
   "description": "Normalized event shape for coding-agent session traces (Claude Code, Copilot, OpenCode). Companion schema experiment_run.schema.json carries run/experiment-arm lineage (condition, policy, model, task, pinned commit) \u2014 deliberately NOT duplicated per event; every event's run_id is a foreign key into it.",
   "type": "object",
   "required": [
@@ -24,7 +24,7 @@
     "event_id": {
       "type": "string",
       "format": "uuid",
-      "description": "Deterministic UUIDv5 \u2014 NOT random, and not copied from the source. Namespace: 64f66254-faf2-5c58-9026-b9af6abf735c (itself uuid5(NAMESPACE_DNS, 'agent-policy-lab.local'), so it is reproducible rather than a magic constant). Name: the four-tuple (source_client, session_id, line_or_offset, json_pointer) joined by '|', with an empty string for a null json_pointer. Re-ingesting the same session MUST yield identical event_ids; a random id would silently duplicate every event on any re-run after an adapter fix."
+      "description": "Deterministic UUIDv5 \u2014 NOT random, and not copied from the source. Namespace: 3924bc50-9bd4-50fa-a405-54d22c375082 (itself uuid5(NAMESPACE_DNS, 'agent-evidence-lab.local'), so it is reproducible rather than a magic constant). Name: the four-tuple (source_client, session_id, line_or_offset, json_pointer) joined by '|', with an empty string for a null json_pointer. Re-ingesting the same session MUST yield identical event_ids; a random id would silently duplicate every event on any re-run after an adapter fix."
     },
     "sequence_index": {
       "type": "integer",

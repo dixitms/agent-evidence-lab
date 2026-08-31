@@ -38,7 +38,7 @@ from .snapshot import SessionSnapshot
 
 SCHEMA_VERSION = "0.2.0"
 SOURCE_CLIENT = "codex-cli"
-EVENT_ID_NAMESPACE = uuid.UUID("64f66254-faf2-5c58-9026-b9af6abf735c")
+EVENT_ID_NAMESPACE = uuid.UUID("3924bc50-9bd4-50fa-a405-54d22c375082")
 
 NORMALIZED = "normalized"
 PRESERVED = "preserved-local-not-normalized"

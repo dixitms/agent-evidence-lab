@@ -1,6 +1,6 @@
 # Claude Code guidance
 
-Agent Policy Lab is a local-first reference implementation for analysing
+Agent Evidence Lab is a local-first reference implementation for analysing
 coding-agent traces without turning raw developer activity into a monitoring
 dataset or performance score.
 

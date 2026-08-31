@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from agent_policy_lab.structural_inventory import InventorySource, build_inventory, discover_sources
+from agent_evidence_lab.structural_inventory import InventorySource, build_inventory, discover_sources
 
 ROOT = Path(__file__).resolve().parent.parent
 

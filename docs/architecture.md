@@ -1,6 +1,6 @@
 # Architecture overview
 
-Agent Policy Lab is built as a local-first evidence pipeline rather than a
+Agent Evidence Lab is built as a local-first evidence pipeline rather than a
 telemetry dashboard.
 
 ```text
