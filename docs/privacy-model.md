@@ -37,3 +37,10 @@ Using real traces requires explicit governance for source scope, consent,
 access control, retention, deletion, and the exact aggregate outputs permitted
 to leave the local environment. This repository provides technical controls and
 reference patterns; it does not grant collection authority.
+
+At organisational scale, this means the shared corpus is formed from approved
+Tier 2 reports, not by centralising Tier 1 traces. A report must state its
+cohort, calculation rule, availability and exclusions so an aggregate does not
+silently turn a client limitation into a behavioural conclusion. See [the
+organisation learning model](organisation-learning-model.md) for the full
+operating model.

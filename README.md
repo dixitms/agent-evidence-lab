@@ -77,6 +77,9 @@ See [the privacy model](docs/privacy-model.md) and
   candidate window is separated from the human judgment that labels it.
 - [Local discovery report contract](docs/local-discovery-report-contract.md) —
   the shape of a private, single-corpus coverage report.
+- [Organisation learning model](docs/organisation-learning-model.md) — how
+  consented local evidence can become organisation-wide learning without a
+  central raw-trace corpus.
 - [Reference case study](docs/case-study-seeded-policy-loop.md) — an
   end-to-end run whose policy effect was unassessable.
 

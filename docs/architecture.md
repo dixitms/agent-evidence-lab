@@ -60,6 +60,25 @@ fields removed. The export path validates its Tier 1 source first, then rejects
 non-exportable run kinds, prohibited fields, secrets, paths, malformed
 manifests, and incomplete sign-off.
 
+## Organisational learning at scale
+
+The scalable unit is not a central corpus of raw developer conversations. It
+is a distributed evidence corpus: each approved local environment retains its
+own Tier 1 traces and contributes only the Tier 2 measurements that its
+governance profile permits. A central view can compare availability, coverage,
+and aggregate patterns across approved cohorts without receiving prompts,
+source code, tool arguments, tool output, paths, or direct session identifiers.
+
+An aggregate signal is a question-selection mechanism, not a verdict. It can
+identify a question such as “is compaction followed by a higher rate of an
+explicitly observed tool failure?” The next step is a bounded investigation and
+a reversible improvement—not an individual ranking. Questions that require
+semantic interpretation of protected content remain local and require their
+own explicit review process.
+
+See [the organisation learning model](organisation-learning-model.md) for the
+operating sequence, roles, and governance boundaries.
+
 ## Evaluation loop
 
 An observed pattern is not an intervention result. A candidate must be
