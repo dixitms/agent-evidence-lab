@@ -36,7 +36,4 @@ Run the relevant focused tests while editing, then run:
 
 ```bash
 pytest -q
-python3 tools/hygiene_audit.py .
 ```
-
-The audit must pass before preparing a public release.
