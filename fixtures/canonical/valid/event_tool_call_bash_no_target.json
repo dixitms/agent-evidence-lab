@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.1",
+  "event_id": "11111111-2222-4333-8444-555555555555",
+  "sequence_index": 6,
+  "run_id": "6f1d3a2e-0c4b-4f8a-9e21-5b7c8d9e0a11",
+  "source_client": "claude-code",
+  "source_client_version": "2.1.220",
+  "session_id": "sha256:0f3b9c1d2e4a5b6c7d8e9f0a1b2c3d4e5f60718293a4b5c6d7e8f9a0b1c2d3e4",
+  "repo_ref": "sha256:9a8b7c6d5e4f30211f0e9d8c7b6a5948372615f4e3d2c1b0a9988776655443322",
+  "turn_index": 2,
+  "event_type": "tool_call",
+  "event_origin": "observed",
+  "field_status": {
+    "tool_name": "observed",
+    "target_path": "unavailable",
+    "args_digest": "observed",
+    "line_range": "unavailable"
+  },
+  "timestamp": "2026-08-18T12:00:19.001Z",
+  "raw_source_ref": {
+    "local_path": "/TIER1/raw/session-fixture.jsonl",
+    "line_or_offset": 14,
+    "json_pointer": "/message/content/0",
+    "content_sha256": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00"
+  },
+  "tool_call": {
+    "tool_name": "Bash",
+    "target_path": null,
+    "args_digest": "sha256:99887766554433221100ffeeddccbbaa99887766554433221100ffeeddccbbaa",
+    "line_range": null
+  }
+}

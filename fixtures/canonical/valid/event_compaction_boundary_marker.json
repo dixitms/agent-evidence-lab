@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1.1",
+  "event_id": "11111111-2222-4333-8444-555555555555",
+  "sequence_index": 120,
+  "run_id": "6f1d3a2e-0c4b-4f8a-9e21-5b7c8d9e0a11",
+  "source_client": "claude-code",
+  "source_client_version": "2.1.220",
+  "session_id": "sha256:0f3b9c1d2e4a5b6c7d8e9f0a1b2c3d4e5f60718293a4b5c6d7e8f9a0b1c2d3e4",
+  "repo_ref": "sha256:9a8b7c6d5e4f30211f0e9d8c7b6a5948372615f4e3d2c1b0a9988776655443322",
+  "turn_index": 44,
+  "event_type": "compaction",
+  "event_origin": "observed",
+  "field_status": {
+    "compaction_source": "observed",
+    "trigger": "observed",
+    "pre_tokens": "observed",
+    "post_tokens": "observed",
+    "cumulative_dropped_tokens": "observed",
+    "duration_ms": "observed"
+  },
+  "timestamp": "2026-08-16T17:28:47.643Z",
+  "raw_source_ref": {
+    "local_path": "/TIER1/raw/session-fixture.jsonl",
+    "line_or_offset": 883,
+    "json_pointer": null,
+    "content_sha256": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00"
+  },
+  "compaction": {
+    "compaction_source": "boundary_marker",
+    "trigger": "auto",
+    "pre_tokens": 936473,
+    "post_tokens": 20251,
+    "cumulative_dropped_tokens": 916222,
+    "duration_ms": 175810
+  }
+}

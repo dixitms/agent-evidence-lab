@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.2.0",
+  "event_id": "aaaa1111-2222-4333-8444-555555555555",
+  "sequence_index": 9,
+  "run_id": "6f1d3a2e-0c4b-4f8a-9e21-5b7c8d9e0a11",
+  "source_client": "codex-cli",
+  "source_client_version": "0.147.0",
+  "session_id": "sha256:codexfixture0000000000000000000000000000000000000000000000000000",
+  "repo_ref": "sha256:codexrepo00000000000000000000000000000000000000000000000000000000",
+  "turn_index": 0,
+  "event_type": "compaction",
+  "event_origin": "observed",
+  "field_status": {
+    "compaction_source": "observed",
+    "trigger": "observed"
+  },
+  "compaction": {
+    "compaction_source": "boundary_marker",
+    "trigger": "auto",
+    "pre_tokens": 90000,
+    "post_tokens": 8000,
+    "cumulative_dropped_tokens": null,
+    "duration_ms": null
+  },
+  "synthesis_reason": null
+}

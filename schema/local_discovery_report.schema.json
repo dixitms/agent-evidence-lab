@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "local_discovery_report.schema.json",
+  "title": "Local Discovery Readiness Report",
+  "description": "Structural contract for the private, Tier-1-only local discovery report. This schema enforces shape only. Cross-field semantics -- provenance completeness, session-id/diagnostic-name uniqueness, availability/results/per_session coverage, session-outcome reconciliation, v1 fixed-scope values, provenance evidence-basis discrimination, and signal-vocabulary membership -- are enforced by src/agent_policy_lab/local_discovery_report.py's validator functions, not by JSON Schema alone (the same division of labor agent_event.schema.json's field_status map documents for itself). Every diagnostic uses one consistent representation -- per_session entries keyed by session id, plus a required aggregate -- and a computed leaf must carry a value. A derived measure's per-session provenance input must declare exactly one evidence basis -- 'payload_field_status' (a field namespaced by its event-type payload, e.g. 'assistant_message.input_tokens', tracked by agent_event.schema.json's own field_status map) or one of two envelope/structural bases for a bare, un-namespaced field name never covered by that map: 'envelope_timestamp_presence' (timestamp presence/absence, status: observed|unavailable -- no 'inferred' concept for a bare timestamp) or 'required_envelope_classification' (a schema-required, always-populated field like event_type, carrying no status key at all). The dotted-vs-bare rule only separates payload fields from envelope fields in general, so each envelope basis is additionally fixed, fail closed, to the one specific bare field it was designed for in this v1 contract ('envelope_timestamp_presence' only for 'timestamp', 'required_envelope_classification' only for 'event_type'); any other bare field under either basis, including the other basis's own field, is refused, not silently accepted. See VALID_PROVENANCE_INPUT_BASES, _ENVELOPE_BASIS_ALLOWED_FIELDS, and _validate_provenance_input in local_discovery_report.py -- not schema-enforced here, same reasoning as report_id's dedicated check.",
+  "type": "object",
+  "required": [
+    "report_id",
+    "report_path",
+    "report_version",
+    "input_sessions",
+    "diagnostics",
+    "scope",
+    "availability",
+    "results",
+    "public_evidence",
+    "organisational_claim_licensed"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Must be a safe filename/token -- enforced by validate_report_id_safe() in local_discovery_report.py (its own dedicated LocalDiscoveryUnsafeReportId exception), deliberately not duplicated as a schema pattern here, so the failure has one clear, always-reached, purpose-named check rather than a generic schema error that would otherwise fire first and shadow it."
+    },
+    "report_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "input_sessions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["session_id", "snapshot_sha256"],
+        "additionalProperties": false,
+        "properties": {
+          "session_id": { "type": "string", "minLength": 1 },
+          "snapshot_sha256": {
+            "type": "string",
+            "description": "A real SHA-256-shaped value (sha256: prefix + 64 lowercase or uppercase hex characters). Fixtures use synthetic hex values -- hashes of a fixture label, never of anything real -- not an unstructured placeholder string.",
+            "pattern": "^sha256:[0-9a-fA-F]{64}$"
+          }
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "measure_kind", "rule_version", "signal_vocabulary"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "measure_kind": {
+            "enum": ["canonical_field", "derived", "adapter_reconciliation"],
+            "description": "'adapter_reconciliation' is a third, honestly-typed kind for a measure that combines snapshot-derived raw counts with canonical emitted-event counts via the adapter's own reconciliation step -- not a canonical field with field_status, and not validated as one. See local_discovery_report.py's validate_provenance."
+          },
+          "rule_version": { "type": "string" },
+          "signal_vocabulary": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "description": "Structured, never a parsed prose string. session_count is validated against len(input_sessions) by the Python validator, not by this schema alone. subject_count, repository_count, and source_client are further restricted to this v1 contract's fixed values (1, 1, 'claude-code') by validate_v1_scope_fixed() in local_discovery_report.py, deliberately in Python rather than a schema const/enum -- same reasoning as report_id's dedicated check, so the failure is a clear, purpose-named LocalDiscoveryScopeNotSupported rather than a generic schema error.",
+      "required": ["subject_count", "repository_count", "session_count", "source_client"],
+      "additionalProperties": false,
+      "properties": {
+        "subject_count": { "type": "integer", "minimum": 1 },
+        "repository_count": { "type": "integer", "minimum": 1 },
+        "session_count": { "type": "integer", "minimum": 0 },
+        "source_client": { "type": "string", "minLength": 1 },
+        "label": { "type": "string" }
+      }
+    },
+    "availability": {
+      "type": "object",
+      "description": "One entry per diagnostic (validated to match diagnostics' names exactly by the Python validator). There is no separate 'records' tier: every diagnostic reports per-session, which already carries record-level detail inside each session's own value.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sessions"],
+        "properties": {
+          "sessions": { "$ref": "#/$defs/count_tuple" }
+        }
+      }
+    },
+    "results": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/result_entry" }
+    },
+    "public_evidence": { "const": false },
+    "organisational_claim_licensed": { "const": false }
+  },
+  "$defs": {
+    "count_tuple": {
+      "type": "object",
+      "required": ["considered", "computed", "not_reportable", "excluded"],
+      "additionalProperties": false,
+      "properties": {
+        "considered": { "type": "integer", "minimum": 0 },
+        "computed": { "type": "integer", "minimum": 0 },
+        "not_reportable": { "type": "integer", "minimum": 0 },
+        "excluded": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "result_entry": {
+      "type": "object",
+      "description": "The one consistent representation: per_session, keyed exactly by every input session's id (validated by the Python validator, not expressible as a cross-reference in JSON Schema alone), plus an aggregate. The aggregate is required, not optional: all six of this v1 contract's diagnostics have a meaningful aggregate, so a report that omits one for a declared diagnostic is incomplete, not merely terse. No other top-level shape is allowed.",
+      "required": ["per_session", "aggregate"],
+      "additionalProperties": false,
+      "properties": {
+        "per_session": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/leaf_entry" }
+        },
+        "aggregate": { "$ref": "#/$defs/leaf_entry" }
+      }
+    },
+    "leaf_entry": {
+      "type": "object",
+      "required": ["outcome"],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "pattern": "^(computed|not_reportable|signal:.+)$"
+        }
+      }
+    }
+  }
+}

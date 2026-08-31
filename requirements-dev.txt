@@ -1,0 +1,5 @@
+# Declared so the schema-validation and adapter test suites are
+# independently rerunnable from a clean checkout.
+jsonschema>=4.21,<5
+rfc8785>=0.1.4,<1      # RFC 8785 JCS canonical JSON for args_digest
+pytest>=8,<10

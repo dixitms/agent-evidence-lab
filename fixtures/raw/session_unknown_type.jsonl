@@ -1,0 +1,2 @@
+{"type": "user", "sessionId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee", "cwd": "/REPO", "version": "2.1.220", "gitBranch": "main", "userType": "external", "entrypoint": "cli", "uuid": "u3", "parentUuid": null, "promptId": "p1", "promptSource": "typed", "origin": {"kind": "human"}, "timestamp": "2026-08-19T09:00:00.000Z", "message": {"role": "user", "content": "Please inspect the router module."}}
+{"type": "brand-new-client-thing", "sessionId": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee", "payload": {}}

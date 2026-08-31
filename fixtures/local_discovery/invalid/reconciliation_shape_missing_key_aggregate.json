@@ -1,0 +1,1111 @@
+{
+  "availability": {
+    "assistant_token_usage": {
+      "sessions": {
+        "computed": 4,
+        "considered": 5,
+        "excluded": 0,
+        "not_reportable": 1
+      }
+    },
+    "compaction_count": {
+      "sessions": {
+        "computed": 5,
+        "considered": 5,
+        "excluded": 0,
+        "not_reportable": 0
+      }
+    },
+    "elapsed_event_span": {
+      "sessions": {
+        "computed": 5,
+        "considered": 5,
+        "excluded": 0,
+        "not_reportable": 0
+      }
+    },
+    "paired_tool_outcome_observed_success": {
+      "sessions": {
+        "computed": 5,
+        "considered": 5,
+        "excluded": 0,
+        "not_reportable": 0
+      }
+    },
+    "reconciliation_availability": {
+      "sessions": {
+        "computed": 5,
+        "considered": 5,
+        "excluded": 0,
+        "not_reportable": 0
+      }
+    },
+    "tool_invocation_distribution": {
+      "sessions": {
+        "computed": 5,
+        "considered": 5,
+        "excluded": 0,
+        "not_reportable": 0
+      }
+    }
+  },
+  "diagnostics": [
+    {
+      "measure_kind": "adapter_reconciliation",
+      "name": "reconciliation_availability",
+      "rule_version": "1.0.0",
+      "signal_vocabulary": []
+    },
+    {
+      "measure_kind": "derived",
+      "name": "assistant_token_usage",
+      "rule_version": "1.0.0",
+      "signal_vocabulary": []
+    },
+    {
+      "measure_kind": "derived",
+      "name": "elapsed_event_span",
+      "rule_version": "1.0.0",
+      "signal_vocabulary": []
+    },
+    {
+      "measure_kind": "derived",
+      "name": "compaction_count",
+      "rule_version": "1.0.0",
+      "signal_vocabulary": []
+    },
+    {
+      "measure_kind": "derived",
+      "name": "tool_invocation_distribution",
+      "rule_version": "1.0.0",
+      "signal_vocabulary": []
+    },
+    {
+      "measure_kind": "derived",
+      "name": "paired_tool_outcome_observed_success",
+      "rule_version": "1.0.0",
+      "signal_vocabulary": []
+    }
+  ],
+  "generated_at": "2026-08-25T00:00:00Z",
+  "input_sessions": [
+    {
+      "session_id": "S1",
+      "snapshot_sha256": "sha256:a960d6643ea1f4396fb1b319529d53c12314dcf03e11fbdc3ca938463da63158"
+    },
+    {
+      "session_id": "S2",
+      "snapshot_sha256": "sha256:353d0f9dd1e0978e46106d1a747a3fd44df96de8dd99315b1d5494af155ba703"
+    },
+    {
+      "session_id": "S3",
+      "snapshot_sha256": "sha256:52cdad6552b899e3e73c663f21bebe359ae20fac88dfa123141588177820b112"
+    },
+    {
+      "session_id": "S4",
+      "snapshot_sha256": "sha256:677b67d42230a44473bf32ea552bf16fe35722fe3dc78d4234d363a1db5c25c7"
+    },
+    {
+      "session_id": "S5",
+      "snapshot_sha256": "sha256:f4d4fd211c6f4ff6875548639025de44bd54b766e130d6db564689028b4be1a4"
+    }
+  ],
+  "organisational_claim_licensed": false,
+  "public_evidence": false,
+  "report_id": "ldr-synthetic-0001",
+  "report_path": "<tier1-root>/local_discovery/ldr-synthetic-0001.json",
+  "report_version": "1.0.0",
+  "results": {
+    "assistant_token_usage": {
+      "aggregate": {
+        "outcome": "computed",
+        "provenance": {
+          "rule": "sum of the 4 computed per-session totals; the 1 not_reportable session contributes nothing to either total",
+          "rule_version": "1.0.0"
+        },
+        "value": {
+          "total_input_tokens": 198150,
+          "total_output_tokens": 39930
+        }
+      },
+      "per_session": {
+        "S1": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_events": 0,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.input_tokens",
+                "field_status": "observed"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.output_tokens",
+                "field_status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "input_tokens": 41200,
+            "output_tokens": 8300
+          }
+        },
+        "S2": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_events": 0,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.input_tokens",
+                "field_status": "observed"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.output_tokens",
+                "field_status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "input_tokens": 55700,
+            "output_tokens": 11040
+          }
+        },
+        "S3": {
+          "outcome": "not_reportable",
+          "reason": "0 of 12 assistant_message events in this session have both input_tokens and output_tokens observed (older client version, no usage block emitted)"
+        },
+        "S4": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_events": 0,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.input_tokens",
+                "field_status": "observed"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.output_tokens",
+                "field_status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "input_tokens": 38950,
+            "output_tokens": 7610
+          }
+        },
+        "S5": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_events": 0,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.input_tokens",
+                "field_status": "observed"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "assistant_message.output_tokens",
+                "field_status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "input_tokens": 62300,
+            "output_tokens": 12980
+          }
+        }
+      }
+    },
+    "compaction_count": {
+      "aggregate": {
+        "outcome": "computed",
+        "provenance": {
+          "rule": "sum of per-session compaction counts",
+          "rule_version": "1.0.0"
+        },
+        "value": {
+          "total_count": 3
+        }
+      },
+      "per_session": {
+        "S1": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "required_envelope_classification",
+                "field": "event_type"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "count": 0
+          }
+        },
+        "S2": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "required_envelope_classification",
+                "field": "event_type"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "count": 1
+          }
+        },
+        "S3": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "required_envelope_classification",
+                "field": "event_type"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "count": 0
+          }
+        },
+        "S4": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "required_envelope_classification",
+                "field": "event_type"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "count": 0
+          }
+        },
+        "S5": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "required_envelope_classification",
+                "field": "event_type"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "count": 2
+          }
+        }
+      }
+    },
+    "elapsed_event_span": {
+      "aggregate": {
+        "outcome": "computed",
+        "provenance": {
+          "rule": "sum of computed per-session elapsed spans",
+          "rule_version": "1.0.0"
+        },
+        "value": {
+          "total_elapsed_seconds": 37155
+        }
+      },
+      "per_session": {
+        "S1": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "first_event",
+                "status": "observed"
+              },
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "last_event",
+                "status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "elapsed_seconds": 5423
+          }
+        },
+        "S2": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "first_event",
+                "status": "observed"
+              },
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "last_event",
+                "status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "elapsed_seconds": 9180
+          }
+        },
+        "S3": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "first_event",
+                "status": "observed"
+              },
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "last_event",
+                "status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "elapsed_seconds": 3110
+          }
+        },
+        "S4": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "first_event",
+                "status": "observed"
+              },
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "last_event",
+                "status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "elapsed_seconds": 7402
+          }
+        },
+        "S5": {
+          "outcome": "computed",
+          "provenance": {
+            "inputs": [
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "first_event",
+                "status": "observed"
+              },
+              {
+                "basis": "envelope_timestamp_presence",
+                "field": "timestamp",
+                "role": "last_event",
+                "status": "observed"
+              }
+            ],
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "elapsed_seconds": 12040
+          }
+        }
+      }
+    },
+    "paired_tool_outcome_observed_success": {
+      "aggregate": {
+        "outcome": "computed",
+        "provenance": {
+          "excluded_unknown_success_total": 16,
+          "rule": "sum of per-session success/failure counts",
+          "rule_version": "1.0.0"
+        },
+        "value": {
+          "observed_failure": 27,
+          "observed_success": 171
+        }
+      },
+      "per_session": {
+        "S1": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_success": 3,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.success",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "join tool_call/tool_result on tool_correlation_id; count success/failure only where tool_result.success is observed",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "observed_failure": 5,
+            "observed_success": 34
+          }
+        },
+        "S2": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_success": 3,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.success",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "join tool_call/tool_result on tool_correlation_id; count success/failure only where tool_result.success is observed",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "observed_failure": 6,
+            "observed_success": 37
+          }
+        },
+        "S3": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_success": 4,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.success",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "join tool_call/tool_result on tool_correlation_id; count success/failure only where tool_result.success is observed",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "observed_failure": 4,
+            "observed_success": 30
+          }
+        },
+        "S4": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_success": 3,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.success",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "join tool_call/tool_result on tool_correlation_id; count success/failure only where tool_result.success is observed",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "observed_failure": 6,
+            "observed_success": 33
+          }
+        },
+        "S5": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_success": 3,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.tool_correlation_id",
+                "field_status": "inferred"
+              },
+              {
+                "basis": "payload_field_status",
+                "field": "tool_result.success",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "join tool_call/tool_result on tool_correlation_id; count success/failure only where tool_result.success is observed",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "observed_failure": 6,
+            "observed_success": 37
+          }
+        }
+      }
+    },
+    "reconciliation_availability": {
+      "aggregate": {
+        "outcome": "computed",
+        "provenance": {
+          "rule": "sum raw_count and canonical_count (or preserved_count) across sessions per key, then recompute delta from the summed pair -- never sum delta directly",
+          "rule_version": "1.0.0",
+          "source": "adapter_reconciliation"
+        },
+        "value": {
+          "assistant_message": {
+            "canonical_count": 76,
+            "delta": 0,
+            "raw_count": 76
+          },
+          "compaction": {
+            "canonical_count": 3,
+            "delta": 0,
+            "raw_count": 3
+          },
+          "preserved": {
+            "meta_injection": {
+              "delta": 0,
+              "preserved_count": 2,
+              "raw_count": 2
+            },
+            "prompt_id_only_envelope": {
+              "delta": 0,
+              "preserved_count": 11,
+              "raw_count": 11
+            },
+            "user_record_without_prompt_source": {
+              "delta": 0,
+              "preserved_count": 5,
+              "raw_count": 5
+            }
+          },
+          "thinking": {
+            "canonical_count": 53,
+            "delta": 0,
+            "raw_count": 53
+          },
+          "tool_call": {
+            "canonical_count": 214,
+            "delta": 0,
+            "raw_count": 214
+          },
+          "tool_result": {
+            "canonical_count": 198,
+            "delta": 0,
+            "raw_count": 198
+          },
+          "user_message": {
+            "canonical_count": 61,
+            "delta": 0,
+            "raw_count": 61
+          }
+        }
+      },
+      "per_session": {
+        "S1": {
+          "outcome": "computed",
+          "provenance": {
+            "rule": "raw_count/canonical_count/delta per ordinary class and turns, raw_count/preserved_count/delta per preserved category, converted from adapter_claude_code.reconcile()'s per-session output; ok is a fail-fast gate checked before this ran, not a measured value",
+            "rule_version": "1.0.0",
+            "source": "adapter_reconciliation"
+          },
+          "value": {
+            "assistant_message": {
+              "canonical_count": 15,
+              "delta": 0,
+              "raw_count": 15
+            },
+            "compaction": {
+              "canonical_count": 0,
+              "delta": 0,
+              "raw_count": 0
+            },
+            "preserved": {
+              "meta_injection": {
+                "delta": 0,
+                "preserved_count": 0,
+                "raw_count": 0
+              },
+              "prompt_id_only_envelope": {
+                "delta": 0,
+                "preserved_count": 2,
+                "raw_count": 2
+              },
+              "user_record_without_prompt_source": {
+                "delta": 0,
+                "preserved_count": 1,
+                "raw_count": 1
+              }
+            },
+            "thinking": {
+              "canonical_count": 10,
+              "delta": 0,
+              "raw_count": 10
+            },
+            "tool_call": {
+              "canonical_count": 40,
+              "delta": 0,
+              "raw_count": 40
+            },
+            "tool_result": {
+              "canonical_count": 38,
+              "delta": 0,
+              "raw_count": 38
+            },
+            "turns": {
+              "canonical_count": 12,
+              "delta": 0,
+              "raw_count": 12
+            },
+            "user_message": {
+              "canonical_count": 12,
+              "delta": 0,
+              "raw_count": 12
+            }
+          }
+        },
+        "S2": {
+          "outcome": "computed",
+          "provenance": {
+            "rule": "raw_count/canonical_count/delta per ordinary class and turns, raw_count/preserved_count/delta per preserved category, converted from adapter_claude_code.reconcile()'s per-session output; ok is a fail-fast gate checked before this ran, not a measured value",
+            "rule_version": "1.0.0",
+            "source": "adapter_reconciliation"
+          },
+          "value": {
+            "assistant_message": {
+              "canonical_count": 16,
+              "delta": 0,
+              "raw_count": 16
+            },
+            "compaction": {
+              "canonical_count": 1,
+              "delta": 0,
+              "raw_count": 1
+            },
+            "preserved": {
+              "meta_injection": {
+                "delta": 0,
+                "preserved_count": 1,
+                "raw_count": 1
+              },
+              "prompt_id_only_envelope": {
+                "delta": 0,
+                "preserved_count": 3,
+                "raw_count": 3
+              },
+              "user_record_without_prompt_source": {
+                "delta": 0,
+                "preserved_count": 1,
+                "raw_count": 1
+              }
+            },
+            "thinking": {
+              "canonical_count": 11,
+              "delta": 0,
+              "raw_count": 11
+            },
+            "tool_call": {
+              "canonical_count": 45,
+              "delta": 0,
+              "raw_count": 45
+            },
+            "tool_result": {
+              "canonical_count": 42,
+              "delta": 0,
+              "raw_count": 42
+            },
+            "turns": {
+              "canonical_count": 14,
+              "delta": 0,
+              "raw_count": 14
+            },
+            "user_message": {
+              "canonical_count": 13,
+              "delta": 0,
+              "raw_count": 13
+            }
+          }
+        },
+        "S3": {
+          "outcome": "computed",
+          "provenance": {
+            "rule": "raw_count/canonical_count/delta per ordinary class and turns, raw_count/preserved_count/delta per preserved category, converted from adapter_claude_code.reconcile()'s per-session output; ok is a fail-fast gate checked before this ran, not a measured value",
+            "rule_version": "1.0.0",
+            "source": "adapter_reconciliation"
+          },
+          "value": {
+            "assistant_message": {
+              "canonical_count": 13,
+              "delta": 0,
+              "raw_count": 13
+            },
+            "compaction": {
+              "canonical_count": 0,
+              "delta": 0,
+              "raw_count": 0
+            },
+            "preserved": {
+              "meta_injection": {
+                "delta": 0,
+                "preserved_count": 0,
+                "raw_count": 0
+              },
+              "prompt_id_only_envelope": {
+                "delta": 0,
+                "preserved_count": 1,
+                "raw_count": 1
+              },
+              "user_record_without_prompt_source": {
+                "delta": 0,
+                "preserved_count": 0,
+                "raw_count": 0
+              }
+            },
+            "thinking": {
+              "canonical_count": 9,
+              "delta": 0,
+              "raw_count": 9
+            },
+            "tool_call": {
+              "canonical_count": 38,
+              "delta": 0,
+              "raw_count": 38
+            },
+            "tool_result": {
+              "canonical_count": 35,
+              "delta": 0,
+              "raw_count": 35
+            },
+            "turns": {
+              "canonical_count": 11,
+              "delta": 0,
+              "raw_count": 11
+            },
+            "user_message": {
+              "canonical_count": 10,
+              "delta": 0,
+              "raw_count": 10
+            }
+          }
+        },
+        "S4": {
+          "outcome": "computed",
+          "provenance": {
+            "rule": "raw_count/canonical_count/delta per ordinary class and turns, raw_count/preserved_count/delta per preserved category, converted from adapter_claude_code.reconcile()'s per-session output; ok is a fail-fast gate checked before this ran, not a measured value",
+            "rule_version": "1.0.0",
+            "source": "adapter_reconciliation"
+          },
+          "value": {
+            "assistant_message": {
+              "canonical_count": 14,
+              "delta": 0,
+              "raw_count": 14
+            },
+            "compaction": {
+              "canonical_count": 0,
+              "delta": 0,
+              "raw_count": 0
+            },
+            "preserved": {
+              "meta_injection": {
+                "delta": 0,
+                "preserved_count": 0,
+                "raw_count": 0
+              },
+              "prompt_id_only_envelope": {
+                "delta": 0,
+                "preserved_count": 2,
+                "raw_count": 2
+              },
+              "user_record_without_prompt_source": {
+                "delta": 0,
+                "preserved_count": 1,
+                "raw_count": 1
+              }
+            },
+            "thinking": {
+              "canonical_count": 10,
+              "delta": 0,
+              "raw_count": 10
+            },
+            "tool_call": {
+              "canonical_count": 41,
+              "delta": 0,
+              "raw_count": 41
+            },
+            "tool_result": {
+              "canonical_count": 39,
+              "delta": 0,
+              "raw_count": 39
+            },
+            "turns": {
+              "canonical_count": 12,
+              "delta": 0,
+              "raw_count": 12
+            },
+            "user_message": {
+              "canonical_count": 11,
+              "delta": 0,
+              "raw_count": 11
+            }
+          }
+        },
+        "S5": {
+          "outcome": "computed",
+          "provenance": {
+            "rule": "raw_count/canonical_count/delta per ordinary class and turns, raw_count/preserved_count/delta per preserved category, converted from adapter_claude_code.reconcile()'s per-session output; ok is a fail-fast gate checked before this ran, not a measured value",
+            "rule_version": "1.0.0",
+            "source": "adapter_reconciliation"
+          },
+          "value": {
+            "assistant_message": {
+              "canonical_count": 18,
+              "delta": 0,
+              "raw_count": 18
+            },
+            "compaction": {
+              "canonical_count": 2,
+              "delta": 0,
+              "raw_count": 2
+            },
+            "preserved": {
+              "meta_injection": {
+                "delta": 0,
+                "preserved_count": 1,
+                "raw_count": 1
+              },
+              "prompt_id_only_envelope": {
+                "delta": 0,
+                "preserved_count": 3,
+                "raw_count": 3
+              },
+              "user_record_without_prompt_source": {
+                "delta": 0,
+                "preserved_count": 2,
+                "raw_count": 2
+              }
+            },
+            "thinking": {
+              "canonical_count": 13,
+              "delta": 0,
+              "raw_count": 13
+            },
+            "tool_call": {
+              "canonical_count": 50,
+              "delta": 0,
+              "raw_count": 50
+            },
+            "tool_result": {
+              "canonical_count": 44,
+              "delta": 0,
+              "raw_count": 44
+            },
+            "turns": {
+              "canonical_count": 16,
+              "delta": 0,
+              "raw_count": 16
+            },
+            "user_message": {
+              "canonical_count": 15,
+              "delta": 0,
+              "raw_count": 15
+            }
+          }
+        }
+      }
+    },
+    "tool_invocation_distribution": {
+      "aggregate": {
+        "outcome": "computed",
+        "provenance": {
+          "excluded_unknown_tool_name_total": 4,
+          "rule": "sum of per-session tool-name counts",
+          "rule_version": "1.0.0"
+        },
+        "value": {
+          "Bash": 40,
+          "Edit": 61,
+          "Read": 84,
+          "Write": 25
+        }
+      },
+      "per_session": {
+        "S1": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_tool_name": 1,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_name",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "count of tool_call events per session grouped by tool_name; events with tool_name field_status not observed are excluded and tallied separately",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "Bash": 10,
+            "Edit": 15,
+            "Read": 20,
+            "Write": 5
+          }
+        },
+        "S2": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_tool_name": 1,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_name",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "count of tool_call events per session grouped by tool_name; events with tool_name field_status not observed are excluded and tallied separately",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "Bash": 8,
+            "Edit": 12,
+            "Read": 18,
+            "Write": 6
+          }
+        },
+        "S3": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_tool_name": 1,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_name",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "count of tool_call events per session grouped by tool_name; events with tool_name field_status not observed are excluded and tallied separately",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "Bash": 7,
+            "Edit": 10,
+            "Read": 15,
+            "Write": 4
+          }
+        },
+        "S4": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_tool_name": 1,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_name",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "count of tool_call events per session grouped by tool_name; events with tool_name field_status not observed are excluded and tallied separately",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "Bash": 9,
+            "Edit": 12,
+            "Read": 16,
+            "Write": 5
+          }
+        },
+        "S5": {
+          "outcome": "computed",
+          "provenance": {
+            "excluded_unknown_tool_name": 0,
+            "inputs": [
+              {
+                "basis": "payload_field_status",
+                "field": "tool_call.tool_name",
+                "field_status": "observed"
+              }
+            ],
+            "rule": "count of tool_call events per session grouped by tool_name; events with tool_name field_status not observed are excluded and tallied separately",
+            "rule_version": "1.0.0"
+          },
+          "value": {
+            "Bash": 6,
+            "Edit": 12,
+            "Read": 15,
+            "Write": 5
+          }
+        }
+      }
+    }
+  },
+  "scope": {
+    "label": "single-developer, single-repo, n=5",
+    "repository_count": 1,
+    "session_count": 5,
+    "source_client": "claude-code",
+    "subject_count": 1
+  }
+}

@@ -1,0 +1,2 @@
+{"type": "user", "sessionId": "22222222-3333-4444-8555-666666666666", "uuid": "z1", "parentUuid": null, "promptId": "zp1", "promptSource": "typed", "timestamp": "2026-08-01T11:00:00.000Z", "message": {"role": "user", "content": "placeholder"}}
+{"type": "system", "sessionId": "22222222-3333-4444-8555-666666666666", "uuid": "z2", "parentUuid": "z1", "subtype": "informational", "content": "unrecognized subtype for the fail-closed test", "timestamp": "2026-08-01T11:00:01.000Z"}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.1",
+  "run_id": "7a2e4b3f-1d5c-4a9b-8f32-6c8d9e0a1b22",
+  "run_kind": "controlled_public_benchmark",
+  "condition": "intervention",
+  "policy_id": "apl-policy-001-reread-avoidance",
+  "policy_version": "1.0.0",
+  "model": "claude-sonnet-5",
+  "task_id": "apl-task-001-clean-file-reread",
+  "pinned_commit": "4a7f2c9e1b8d3f05a6c2e9b7d4f10a3c5e8b6d29",
+  "repo_url": "https://github.com/django/django",
+  "disposition": "completed_analyzable",
+  "model_evidence_consistent": true,
+  "eligibility": {
+    "activation_opportunity_present": true,
+    "activation_observed": true
+  },
+  "created_at": "2026-08-19T10:15:00Z",
+  "model_source": "declared_preflight"
+}

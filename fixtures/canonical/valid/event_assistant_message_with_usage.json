@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.1",
+  "event_id": "fdd49503-8b02-5de0-a40e-c57617f1d2ef",
+  "sequence_index": 2,
+  "run_id": "6f1d3a2e-0c4b-4f8a-9e21-5b7c8d9e0a11",
+  "source_client": "claude-code",
+  "source_client_version": "2.1.220",
+  "session_id": "sha256:0f3b9c1d2e4a5b6c7d8e9f0a1b2c3d4e5f60718293a4b5c6d7e8f9a0b1c2d3e4",
+  "repo_ref": "sha256:9a8b7c6d5e4f30211f0e9d8c7b6a5948372615f4e3d2c1b0a9988776655443322",
+  "turn_index": 1,
+  "event_type": "assistant_message",
+  "event_origin": "observed",
+  "field_status": {
+    "input_tokens": "observed",
+    "output_tokens": "observed",
+    "cache_read_input_tokens": "observed",
+    "cache_creation_input_tokens": "observed"
+  },
+  "timestamp": "2026-08-18T12:00:04.500Z",
+  "raw_source_ref": {
+    "local_path": "/TIER1/raw/session-fixture.jsonl",
+    "line_or_offset": 12,
+    "json_pointer": null,
+    "content_sha256": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00"
+  },
+  "assistant_message": {
+    "input_tokens": 2,
+    "output_tokens": 542,
+    "cache_read_input_tokens": 21484,
+    "cache_creation_input_tokens": 12323
+  }
+}

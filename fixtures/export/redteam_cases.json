@@ -1,0 +1,239 @@
+{
+  "description": "Adversarial export cases. Each mutates an otherwise-valid screened bundle and must be REFUSED for the stated reason. A validator whose refusals nobody has watched is indistinguishable from one that always returns ok.",
+  "cases": [
+    {
+      "name": "run_kind_private_dogfood",
+      "target": "run",
+      "mutation": {
+        "run_kind": "private_dogfood"
+      },
+      "expect_reason_contains": "only 'controlled_public_benchmark'",
+      "why": "A dogfood trace is never eligible for publication, full stop."
+    },
+    {
+      "name": "run_kind_calibration",
+      "target": "run",
+      "mutation": {
+        "run_kind": "calibration"
+      },
+      "expect_reason_contains": "only 'controlled_public_benchmark'",
+      "why": "Calibration includes a private calibration cohort \u2014 read to validate, never counted."
+    },
+    {
+      "name": "run_kind_disagreement",
+      "target": "manifest",
+      "mutation": {
+        "run_kind": "private_dogfood"
+      },
+      "expect_reason_contains": "disagree on run_kind",
+      "why": "A manifest relabelled to look exportable while the run record says otherwise."
+    },
+    {
+      "name": "raw_source_ref_left_in",
+      "target": "event",
+      "mutation": {
+        "raw_source_ref": {
+          "local_path": "/x",
+          "content_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "expect_reason_contains": "prohibited field: 'raw_source_ref'",
+      "why": "Carries local paths and hashes of private content; screening strips it entirely."
+    },
+    {
+      "name": "args_digest_left_in",
+      "target": "event_payload",
+      "mutation": {
+        "tool_call": {
+          "args_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      },
+      "expect_reason_contains": "prohibited field: 'args_digest'",
+      "why": "Screening drops it unless the underlying args are already public."
+    },
+    {
+      "name": "raw_message_text",
+      "target": "event_payload",
+      "mutation": {
+        "user_message": {
+          "content": "please fix the login bug in acme-corp"
+        }
+      },
+      "expect_reason_contains": "prohibited field: 'content'",
+      "why": "Message text must never reach a public artifact regardless of source."
+    },
+    {
+      "name": "thinking_content_smuggled",
+      "target": "event_payload",
+      "mutation": {
+        "thinking": {
+          "summary": "internal reasoning text"
+        }
+      },
+      "expect_reason_contains": "prohibited field: 'summary'",
+      "why": "Thinking content is never part of a public artifact."
+    },
+    {
+      "name": "home_path_in_unexpected_field",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:posix_home_path"
+      },
+      "expect_reason_contains": "posix home path",
+      "why": "The structural check cannot know every field; the scan reads the serialized bundle."
+    },
+    {
+      "name": "windows_home_path",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:windows_home_path"
+      },
+      "expect_reason_contains": "windows home path",
+      "why": "Same leak on a different platform."
+    },
+    {
+      "name": "email_address",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:email_address"
+      },
+      "expect_reason_contains": "email address",
+      "why": "Personal identifiers are not evidence."
+    },
+    {
+      "name": "anthropic_key",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:anthropic_key"
+      },
+      "expect_reason_contains": "anthropic key",
+      "why": "Credential shapes must halt an export."
+    },
+    {
+      "name": "github_token",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:github_token"
+      },
+      "expect_reason_contains": "github token",
+      "why": "Credential shapes must halt an export."
+    },
+    {
+      "name": "aws_key",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:aws_key"
+      },
+      "expect_reason_contains": "aws access key",
+      "why": "Credential shapes must halt an export."
+    },
+    {
+      "name": "bearer_token",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:bearer_token"
+      },
+      "expect_reason_contains": "bearer token",
+      "why": "Credential shapes must halt an export."
+    },
+    {
+      "name": "private_key_block",
+      "target": "manifest_extra",
+      "mutation": {
+        "task_id": "__redteam_value__:private_key_block"
+      },
+      "expect_reason_contains": "private key block",
+      "why": "Credential shapes must halt an export."
+    },
+    {
+      "name": "manifest_missing_field",
+      "target": "manifest_del",
+      "mutation": [
+        "pinned_commit"
+      ],
+      "expect_reason_contains": "required field missing or empty: pinned_commit",
+      "why": "A malformed manifest is not provenance; public evidence needs its anchor."
+    },
+    {
+      "name": "manifest_event_count_mismatch",
+      "target": "manifest",
+      "mutation": {
+        "event_count": 999
+      },
+      "expect_reason_contains": "but bundle carries",
+      "why": "A manifest that miscounts its own run cannot vouch for it."
+    },
+    {
+      "name": "unreconciled_run",
+      "target": "manifest",
+      "mutation": {
+        "reconciled_ok": false
+      },
+      "expect_reason_contains": "reconciled_ok is not true",
+      "why": "Unreconciled data is exactly what the adapter-reconciliation incident produced."
+    },
+    {
+      "name": "no_signoff",
+      "target": "signoff",
+      "mutation": null,
+      "expect_reason_contains": "no sign-off supplied",
+      "why": "The manual step is required, not advisory."
+    },
+    {
+      "name": "incomplete_checklist",
+      "target": "signoff_partial",
+      "mutation": [
+        "reviewed_every_exported_field"
+      ],
+      "expect_reason_contains": "checklist item not confirmed",
+      "why": "A half-completed checklist is not a sign-off."
+    },
+    {
+      "name": "checklist_with_invented_item",
+      "target": "signoff_extra",
+      "mutation": {
+        "looks_fine_to_me": true
+      },
+      "expect_reason_contains": "unrecognized checklist items",
+      "why": "The checklist is fixed; it is not extended at export time to make a run pass."
+    },
+    {
+      "name": "placeholder_pinned_commit",
+      "target": "manifest",
+      "mutation": {
+        "pinned_commit": "unknown"
+      },
+      "expect_reason_contains": "is not a git commit hash",
+      "why": "Dogfood ingestion writes 'unknown'; a non-empty placeholder must not pass as provenance."
+    },
+    {
+      "name": "local_private_repo_url",
+      "target": "manifest",
+      "mutation": {
+        "repo_url": "local-private"
+      },
+      "expect_reason_contains": "is not a public URL",
+      "why": "A local repository cannot back a public artifact, however the manifest labels it."
+    },
+    {
+      "name": "field_status_advertising_dropped_field",
+      "target": "event",
+      "mutation": {
+        "field_status": {
+          "args_digest": "observed"
+        }
+      },
+      "expect_reason_contains": "prohibited field: 'args_digest'",
+      "why": "Found by running against a real session: screening kept field_status verbatim, so it named fields it had just dropped."
+    },
+    {
+      "name": "continuity_annotation_embedded",
+      "target": "manifest_extra",
+      "mutation": {
+        "window_id": "ccw-0123456789abcdef0123456789abcdef"
+      },
+      "expect_reason_contains": "prohibited field: 'window_id'",
+      "why": "A compaction-continuity annotation is Tier 1 terminal: it records a human's reading of protected transcript context, so it has no screened form and is refused structurally rather than redacted."
+    }
+  ]
+}

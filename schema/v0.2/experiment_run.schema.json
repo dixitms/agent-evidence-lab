@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-policy-lab.local/schema/v0.2/experiment_run.schema.json",
+  "title": "Agent Policy Lab experiment run \u2014 v0.2",
+  "description": "Run/experiment-arm lineage, kept OUTSIDE agent_event.schema.json by design (added on review \u2014 the original event schema had no way to join events to a treatment arm). One of these per session; every event in that session carries this run's run_id as a foreign key. v0.2.0 adds the codex-cli client. Claude Code output remains on 0.1.1 in schema/v0.1/: the two versions MUST NOT be pooled \u2014 a consumer explicitly accepts or migrates a version, exactly as a 'direct' and a 'reconstructed_from_range' size measurement are never averaged together.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "run_kind",
+    "condition",
+    "policy_id",
+    "policy_version",
+    "task_id",
+    "pinned_commit",
+    "repo_url",
+    "disposition"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "run_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "run_kind": {
+      "type": "string",
+      "enum": [
+        "controlled_public_benchmark",
+        "private_dogfood",
+        "calibration"
+      ],
+      "description": "Gates publication: the export validator MUST refuse to export any run whose run_kind is not controlled_public_benchmark, regardless of any other field."
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "baseline",
+        "intervention"
+      ]
+    },
+    "policy_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "null for condition == baseline. Identifies the intervention under test."
+    },
+    "policy_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The model selected BEFORE launch, recorded in this manifest at run setup \u2014 not harvested from agent-turn evidence after the fact. Two rules, both fixture-derived: (1) Claude Code emits a literal '<synthetic>' model value on locally-generated lines (title generation and similar UI bookkeeping); '<synthetic>' MUST NEVER populate this field. (2) If agent-turn evidence shows a different model than recorded here, or shows a mid-run model switch, the run is marked disposition 'scope_confounded' \u2014 never silently treated as a single-model run.",
+      "not": {
+        "const": "<synthetic>"
+      }
+    },
+    "model_source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "declared_preflight",
+        "observed_from_trace",
+        null
+      ],
+      "description": "How `model` was established. REQUIRED non-null whenever model is non-null. 'declared_preflight': recorded in this manifest at run setup, before launch \u2014 the only form permitted for run_kind 'controlled_public_benchmark' (enforced below). 'observed_from_trace': harvested from agent-turn evidence, which is the only thing available when ingesting an already-completed dogfood session that never had a pre-launch manifest. Without this discriminator, dogfood ingestion would have to either discard a verified-observed fact or silently violate the pre-launch rule."
+    },
+    "model_evidence_consistent": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Whether observed agent-turn model values across the run matched this manifest's declared model. Null = not yet checked. False REQUIRES disposition 'scope_confounded' (enforced below). Verified constant within each of the 3 sessions hand-checked during schema development, but n=3 is not a guarantee \u2014 the check is per-run, not assumed."
+    },
+    "model_configuration": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Free-form key/value of relevant non-secret run configuration (e.g. temperature, extended-thinking on/off). Never credentials or API keys."
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Identifies the frozen task/prompt set this run executed \u2014 required so a pair can be verified scope-comparable."
+    },
+    "pinned_commit": {
+      "type": "string",
+      "description": "The exact commit the run started from."
+    },
+    "repo_url": {
+      "type": "string"
+    },
+    "eligibility": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Frozen in advance, before either arm runs \u2014 records whether this run's task actually presented a comparable opportunity for the pattern under test, independent of whether the policy fired.",
+      "properties": {
+        "activation_opportunity_present": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "activation_observed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "completed_analyzable",
+        "completed_not_activated",
+        "discarded",
+        "excluded",
+        "scope_confounded"
+      ],
+      "description": "Every run gets one of these, including calibration and discarded runs \u2014 none are silently dropped from the local record. Only completed_analyzable runs enter a compliance comparison. 'scope_confounded': the run executed but something makes it non-comparable to its pair \u2014 currently, model evidence disagreeing with the declared model, or a mid-run model switch. Distinct from 'excluded' (a deliberate exclusion decision) and 'discarded' (the run did not usefully complete): scope_confounded says the run happened and is being kept in the record precisely so the confound is visible."
+    },
+    "disposition_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Required in practice (not schema-enforced as required, to avoid blocking capture) whenever disposition != completed_analyzable."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "condition": {
+            "const": "baseline"
+          }
+        },
+        "required": [
+          "condition"
+        ]
+      },
+      "then": {
+        "properties": {
+          "policy_id": {
+            "const": null
+          },
+          "policy_version": {
+            "const": null
+          }
+        }
+      },
+      "$comment": "baseline runs must not carry a policy identity \u2014 was only prose before."
+    },
+    {
+      "if": {
+        "properties": {
+          "condition": {
+            "const": "intervention"
+          }
+        },
+        "required": [
+          "condition"
+        ]
+      },
+      "then": {
+        "properties": {
+          "policy_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "policy_version": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "policy_id",
+          "policy_version"
+        ]
+      },
+      "$comment": "intervention runs must name the policy under test, non-null and non-empty."
+    },
+    {
+      "if": {
+        "properties": {
+          "model_evidence_consistent": {
+            "const": false
+          }
+        },
+        "required": [
+          "model_evidence_consistent"
+        ]
+      },
+      "then": {
+        "properties": {
+          "disposition": {
+            "const": "scope_confounded"
+          }
+        }
+      },
+      "$comment": "a run whose observed model evidence contradicts its declared model cannot be dispositioned as analyzable. Enforced, not left to operator discipline."
+    },
+    {
+      "if": {
+        "properties": {
+          "model": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "model"
+        ]
+      },
+      "then": {
+        "required": [
+          "model_source"
+        ],
+        "properties": {
+          "model_source": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "$comment": "a model value with no stated provenance is exactly the ambiguity model_source exists to remove."
+    },
+    {
+      "if": {
+        "properties": {
+          "run_kind": {
+            "const": "controlled_public_benchmark"
+          }
+        },
+        "required": [
+          "run_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "model_source": {
+            "not": {
+              "const": "observed_from_trace"
+            }
+          }
+        }
+      },
+      "$comment": "public-benchmark evidence must name its model before launch. Harvesting it from the trace after the fact is permitted only for dogfood/calibration ingestion, never for a run that can become public evidence."
+    }
+  ]
+}

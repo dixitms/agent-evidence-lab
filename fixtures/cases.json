@@ -1,0 +1,456 @@
+{
+  "description": "Schema-validation cases across BOTH live contract versions. Every fixture is a HAND-WRITTEN canonical record whose SHAPE was derived from real observation; no real transcript content, path, prompt, or tool output appears in any of them. Raw traces are Tier 1 and never committed. Fixtures named codex_* are 0.2.0 and validate against schema/v0.2; all others are 0.1.1 and validate against schema/v0.1. The versions are checked separately and never pooled.",
+  "schemas": {
+    "agent_event": "schema/v0.1/agent_event.schema.json",
+    "experiment_run": "schema/v0.1/experiment_run.schema.json",
+    "agent_event_v02": "schema/v0.2/agent_event.schema.json",
+    "experiment_run_v02": "schema/v0.2/experiment_run.schema.json"
+  },
+  "cases": [
+    {
+      "fixture": "valid/codex_assistant_message_usage_unavailable.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_compaction_uncharacterized.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_session_end_synthesized.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_session_start_observed.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_thinking_opaque.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_tool_call_exec.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_tool_result_exec.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_user_message_multi_in_one_turn_1.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_user_message_multi_in_one_turn_2.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_user_message_multi_in_one_turn_3.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/codex_user_message_no_prompt_source.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_assistant_message_with_usage.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_compaction_boundary_marker.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_compaction_continuation_summary.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_compaction_older_client_no_cumulative.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_session_end_synthesized.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_session_start_synthesized.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_thinking_empty_block.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_call_bash_no_target.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_call_correlated.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_call_orphan_no_result.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_call_read_ranged.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_call_target_outside_repo_unavailable.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_result_correlated.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_result_direct_string.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_result_size_unavailable.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_tool_result_success_unavailable.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_user_message_system_prompt_opens_turn.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/event_user_message_typed_prompt.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/run_baseline_null_policy.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/run_dogfood_model_observed_from_trace.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/run_intervention_named_policy.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/run_model_null_no_source_required.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/run_not_activated_retained.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/run_private_dogfood_never_exportable.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "valid/run_scope_confounded_model_switch.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "valid"
+    },
+    {
+      "fixture": "invalid/codex_assistant_message_inferred_tokens.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "invalid",
+      "reason": "A token count joined from the cumulative token_count stream is an unproven inference presented as data."
+    },
+    {
+      "fixture": "invalid/codex_compaction_guessed_source.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "invalid",
+      "reason": "Codex compaction metrics are uncharacterized; claiming Claude Code's boundary_marker shape is a guess."
+    },
+    {
+      "fixture": "invalid/codex_session_start_claiming_synthesized.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "invalid",
+      "reason": "Codex has a native session_meta record in 98/98 files, so session_start is observed \u2014 synthesizing it understates the client."
+    },
+    {
+      "fixture": "invalid/codex_thinking_length_from_ciphertext.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "invalid",
+      "reason": "1804 is the ciphertext length, not the plaintext length \u2014 a fabricated number wearing a status tag."
+    },
+    {
+      "fixture": "invalid/codex_user_message_invented_prompt_source.json",
+      "schema": "agent_event_v02",
+      "schema_version": "0.2.0",
+      "expect": "invalid",
+      "reason": "Codex has no promptSource analogue; inventing one would let a protocol-level message read as a human prompt."
+    },
+    {
+      "fixture": "invalid/event_assistant_message_missing_payload.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "assistant_message is now a typed payload family; the usage payload is mandatory."
+    },
+    {
+      "fixture": "invalid/event_assistant_message_with_tool_call_payload.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "The original review bug: a non-tool event type carrying a tool_call payload."
+    },
+    {
+      "fixture": "invalid/event_bad_field_status_vocabulary.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "field_status vocabulary is observed|unavailable|inferred; 'reconstructed' belongs to result_size_method only."
+    },
+    {
+      "fixture": "invalid/event_bad_result_size_unit.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "result_size_unit is a const: utf8_bytes only in v0.1."
+    },
+    {
+      "fixture": "invalid/event_claude_code_session_end_claiming_observed.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "Fixtures prove Claude Code emits no native session boundary; claiming observed must fail."
+    },
+    {
+      "fixture": "invalid/event_compaction_missing_payload.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "compaction is now a typed payload family; the payload is mandatory."
+    },
+    {
+      "fixture": "invalid/event_observed_with_synthesis_reason.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "An observed event must not carry a synthesis rationale."
+    },
+    {
+      "fixture": "invalid/event_subagent_spawn_removed_from_enum.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "subagent_spawn was removed from the v0.1 enum (no real fixture ever demonstrated its shape); deferred to v0.2."
+    },
+    {
+      "fixture": "invalid/event_synthesized_without_reason.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "A synthesized event must state why it was constructed."
+    },
+    {
+      "fixture": "invalid/event_tool_call_carrying_compaction.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "A tool_call event must not also carry a compaction payload (an exclusivity gap found during development)."
+    },
+    {
+      "fixture": "invalid/event_tool_call_missing_payload.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "event_type tool_call with no tool_call payload."
+    },
+    {
+      "fixture": "invalid/event_tool_call_with_two_payloads.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "A tool_call event must not also carry a tool_result payload."
+    },
+    {
+      "fixture": "invalid/event_tool_result_carrying_compaction.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "A tool_result event must not also carry a compaction payload (an exclusivity gap found during development)."
+    },
+    {
+      "fixture": "invalid/event_tool_result_missing_size_unit.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "result_size_unit is mandatory \u2014 an explicit unit that can be omitted is not explicit."
+    },
+    {
+      "fixture": "invalid/event_tool_result_missing_size_value.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "result_size_value is mandatory though nullable: 'unavailable' must be stated as null, not by omitting the key."
+    },
+    {
+      "fixture": "invalid/event_typed_payload_with_empty_field_status.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "field_status must be non-empty when a typed payload is present."
+    },
+    {
+      "fixture": "invalid/event_user_message_missing_payload.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "user_message is now a typed payload family; the prompt_source payload is mandatory."
+    },
+    {
+      "fixture": "invalid/event_user_message_unknown_prompt_source.json",
+      "schema": "agent_event",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "An unrecognized prompt_source must fail rather than be coerced to null."
+    },
+    {
+      "fixture": "invalid/run_baseline_carrying_policy.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "A baseline arm must not name a policy."
+    },
+    {
+      "fixture": "invalid/run_intervention_empty_policy_version.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "Empty string is not a policy version."
+    },
+    {
+      "fixture": "invalid/run_intervention_null_policy.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "An intervention arm must name a policy, non-null."
+    },
+    {
+      "fixture": "invalid/run_model_inconsistent_but_analyzable.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "Model evidence disagreeing with the declared model forces disposition scope_confounded."
+    },
+    {
+      "fixture": "invalid/run_model_synthetic_forbidden.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "Claude Code's <synthetic> UI-line model value must never populate a run's declared model."
+    },
+    {
+      "fixture": "invalid/run_model_without_source.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "A model value with no stated provenance is the ambiguity model_source exists to remove."
+    },
+    {
+      "fixture": "invalid/run_public_benchmark_model_from_trace.json",
+      "schema": "experiment_run",
+      "schema_version": "0.1.1",
+      "expect": "invalid",
+      "reason": "Public-benchmark evidence must declare its model pre-launch; harvesting from the trace is dogfood-only."
+    }
+  ],
+  "payload_exclusivity_matrix": {
+    "description": "Generated at runtime by validate_fixtures.py, not stored as files. For every event_type that owns a typed payload, the runner builds one instance per FOREIGN payload and asserts the schema rejects it; it also asserts each no-payload event type rejects every payload. Derived from the schema's own event_type enum and payload list, so a 7th payload type is covered automatically the day it is added. This exists because hand-maintained exclusivity lists drifted twice during development (assistant_message could carry tool_call; tool_call/tool_result could carry compaction). Run against EVERY live agent_event version, so a new version cannot silently ship with a weaker exclusivity guarantee than the one before it.",
+    "payload_event_types": [
+      "tool_call",
+      "tool_result",
+      "thinking",
+      "compaction",
+      "assistant_message",
+      "user_message"
+    ],
+    "no_payload_event_types": [
+      "session_start",
+      "session_end"
+    ],
+    "applies_to_schemas": [
+      "agent_event",
+      "agent_event_v02"
+    ]
+  }
+}

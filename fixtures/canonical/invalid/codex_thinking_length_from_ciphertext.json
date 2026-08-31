@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.2.0",
+  "event_id": "aaaa1111-2222-4333-8444-555555555555",
+  "sequence_index": 6,
+  "run_id": "6f1d3a2e-0c4b-4f8a-9e21-5b7c8d9e0a11",
+  "source_client": "codex-cli",
+  "source_client_version": "0.147.0",
+  "session_id": "sha256:codexfixture0000000000000000000000000000000000000000000000000000",
+  "repo_ref": "sha256:codexrepo00000000000000000000000000000000000000000000000000000000",
+  "turn_index": 0,
+  "event_type": "thinking",
+  "event_origin": "observed",
+  "field_status": {
+    "length_value": "inferred"
+  },
+  "thinking": {
+    "length_value": 1804
+  },
+  "synthesis_reason": null
+}

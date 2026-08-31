@@ -1,0 +1,820 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-policy-lab.local/schema/v0.1/agent_event.schema.json",
+  "title": "Agent Policy Lab canonical event \u2014 v0.1",
+  "description": "Normalized event shape for coding-agent session traces (Claude Code, Copilot, OpenCode). Companion schema experiment_run.schema.json carries run/experiment-arm lineage (condition, policy, model, task, pinned commit) \u2014 deliberately NOT duplicated per event; every event's run_id is a foreign key into it.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "event_id",
+    "sequence_index",
+    "run_id",
+    "source_client",
+    "session_id",
+    "repo_ref",
+    "turn_index",
+    "event_type",
+    "event_origin",
+    "field_status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.1"
+    },
+    "event_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Deterministic UUIDv5 \u2014 NOT random, and not copied from the source. Namespace: 64f66254-faf2-5c58-9026-b9af6abf735c (itself uuid5(NAMESPACE_DNS, 'agent-policy-lab.local'), so it is reproducible rather than a magic constant). Name: the four-tuple (source_client, session_id, line_or_offset, json_pointer) joined by '|', with an empty string for a null json_pointer. Re-ingesting the same session MUST yield identical event_ids; a random id would silently duplicate every event on any re-run after an adapter fix."
+    },
+    "sequence_index": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonic, unique within session_id \u2014 a total order across every event in the session. NOT the same as turn_index: multiple events (e.g. several tool_call/tool_result pairs) can share one turn_index, but sequence_index never repeats. Added 0.1.0 review pass: turn_index alone under-specified ordering."
+    },
+    "run_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Foreign key into experiment_run.schema.json. Without this, events cannot be reliably joined to a treatment arm (condition, policy_id/version, model, task, pinned commit) \u2014 added on review; the original 0.1 draft omitted run lineage entirely."
+    },
+    "source_client": {
+      "type": "string",
+      "enum": [
+        "claude-code",
+        "copilot-vscode",
+        "opencode"
+      ]
+    },
+    "source_client_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Raw locally; MUST be replaced with a salted sha256 hash before any Tier 2 (public) export."
+    },
+    "repo_ref": {
+      "type": "string",
+      "description": "Local: hash of absolute path. Public: repo URL + pinned commit. Never a raw local path in a Tier 2 export."
+    },
+    "turn_index": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Agent input cycle, 0-based. CORRECTED in 0.1.1 (the 0.1.0 text said 'every raw user record carrying a promptId', which real-session reconciliation proved false \u2014 tool-result carriers carry a promptId too: 9,965 of them across the surveyed corpus versus 630 genuine prompts, so that rule counted tool results as turns and cost 391 of 494 tool results in the first spot-checked session). A new turn begins ONLY at a raw user record whose promptSource is one of the four recognized values: typed, suggestion_accepted, system, sdk. A system-sourced prompt is not human input but is a real agent request boundary, so it counts. A record carrying a promptId but NO promptSource (interruption markers, slash-command envelopes, older-client prompts) is NOT a turn in v0.1: it is retained locally with a distinct preserved-local-not-normalized disposition, emits no user_message, and must not be smoothed into prompt_source: null. If a later controlled fixture shows a specific slash/interruption class is a meaningful agent interaction, model it explicitly in v0.2 rather than retrofitting it into 'turn'. Origin is preserved separately in the user_message payload's prompt_source."
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "session_start",
+        "user_message",
+        "assistant_message",
+        "tool_call",
+        "tool_result",
+        "thinking",
+        "compaction",
+        "session_end"
+      ],
+      "description": "subagent_spawn was REMOVED from this enum during the initial fixture pass. Zero instances exist across the ~66 local Claude Code sessions surveyed \u2014 no isSidechain:true line, no Task tool_use call \u2014 so its real source shape is unknown and no adapter can map it honestly. Deferred to v0.2, pending a controlled/public fixture that demonstrates the actual shape. Do not re-add it from vendor documentation alone."
+    },
+    "event_origin": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "synthesized"
+      ],
+      "description": "Whether this event corresponds to a real record in the source trace ('observed') or was constructed by the adapter because the client emits no such record ('synthesized'). Claude Code has NO native session_start/session_end marker in any surveyed session (first/last raw lines were last-prompt and system/turn_duration), so those events are adapter constructions and must never be counted as observed facts. A synthesized event MUST carry synthesis_reason."
+    },
+    "synthesis_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Required (non-empty) when event_origin == 'synthesized' \u2014 states why the adapter constructed this event and from what, e.g. 'no native session_end marker in Claude Code JSONL; synthesized from last line timestamp'. Must be null or absent when event_origin == 'observed'."
+    },
+    "timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "raw_source_ref": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Tier 1 (local) only. MUST be stripped entirely before any Tier 2 (public) export.",
+      "properties": {
+        "local_path": {
+          "type": "string"
+        },
+        "line_or_offset": {
+          "type": [
+            "integer",
+            "string"
+          ],
+          "description": "Locates the raw record within the source file (for JSONL, the line). Retained as-is \u2014 json_pointer addresses WITHIN that record, it does not replace this."
+        },
+        "json_pointer": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "RFC 6901 JSON Pointer to the specific nested node within the raw record this event was derived from, e.g. '/message/content/2' for the third content block. Null for whole-line events. Claude Code packs tool_call/tool_result/thinking as blocks inside one line's message.content[] array, so a single raw line commonly explodes into 2-3 canonical events \u2014 line number alone makes their provenance refs collide. Deliberately a generic pointer rather than a Claude-specific block_index, so other clients' nesting layouts are addressable by the same field.",
+          "pattern": "^(/([^/~]|~[01])*)*$"
+        },
+        "content_sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "local_path",
+        "content_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "field_status": {
+      "type": "object",
+      "description": "Maps every variable field present in this event's type-specific payload to its provenance status. A field absent here MUST NOT appear elsewhere in the event. LIMITATION: JSON Schema cannot fully cross-check 'every populated field in tool_call/tool_result/thinking has a matching key here' \u2014 the allOf conditionals below enforce that field_status is non-empty when a typed payload is present, but complete per-field cross-validation requires a validator function at adapter/ingestion time, not pure JSON Schema. Do not describe this map as fully mechanically enforced until that validator exists.",
+      "additionalProperties": {
+        "type": "string",
+        "enum": [
+          "observed",
+          "unavailable",
+          "inferred"
+        ],
+        "description": "'inferred' covers any value derived rather than directly observed \u2014 including a line_range or size reconstructed from partial data. tool_result.result_size_method (below) uses a separate, more specific vocabulary (direct/reconstructed_from_range/unavailable) scoped to size measurement only; do not conflate the two enums."
+      }
+    },
+    "tool_call": {
+      "type": "object",
+      "description": "Required when (and only when) event_type == tool_call \u2014 enforced by the allOf conditionals below.",
+      "properties": {
+        "tool_name": {
+          "type": "string"
+        },
+        "tool_correlation_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Links this call to its tool_result. MUST be a per-session salted HMAC of the source's tool_use id \u2014 never the raw client id, which would leak a source identifier into Tier 2. Equality is the only property that matters, and per-session salting keeps it meaningful within a session while preventing cross-session correlation. field_status is 'inferred', not 'observed': the relationship is observed, this representation of it is derived. Pairing was exact across the surveyed corpus (936 calls / 936 results / 0 orphans / 0 duplicates over 8 sessions), but that is not assumed \u2014 an interrupted session may produce a call with no result, in which case the call is emitted with the result simply absent and the adapter reports unmatched counts. Never synthesize a placeholder result. DERIVATION (required for reproducible re-ingestion): HMAC-SHA256(key=local_secret, msg=source_client || session_id || raw_tool_use_id), where local_secret is PERSISTENT Tier 1 configuration \u2014 generated once, stored outside the repo, gitignored, never exported. A fresh random salt per run would give the same session two different correlation ids on two ingestions, silently breaking the very join this field exists to provide. session_id sits in the message (not only the key) so a single stable secret still cannot correlate across sessions."
+        },
+        "target_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Tier 1: a normalized REPO-RELATIVE path \u2014 real enough to check git state for the clean-file pattern, with no home-directory prefix to leak. A path outside the repository, or one that cannot be safely normalized (symlink escape, '..' traversal beyond the root), is set null with field_status 'unavailable' rather than stored absolute. Tier 2 drops this field entirely."
+        },
+        "args_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "SHA-256 (hex) of the UTF-8 encoding of the source tool-input object serialized as RFC 8785 JCS canonical JSON (https://www.rfc-editor.org/rfc/rfc8785). A named portable standard, chosen deliberately over an ad-hoc 'sorted keys' rule, which is language-specific and ambiguous about number formatting, unicode escaping, and key ordering. Same reproducibility discipline as result_size_value's canonicalization rule. Normalization-layer summary, not a privacy control \u2014 raw args live in raw_source_ref (Tier 1 only)."
+        },
+        "line_range": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "start": {
+              "type": "integer"
+            },
+            "end": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "tool_result": {
+      "type": "object",
+      "description": "Required when (and only when) event_type == tool_result \u2014 enforced by the allOf conditionals below.",
+      "properties": {
+        "tool_correlation_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Links this result back to its tool_call \u2014 same per-session salted HMAC construction and same 'inferred' status as the tool_call side. Null with field_status 'unavailable' for a result whose originating call was not observed. Same HMAC derivation as the tool_call side; see there."
+        },
+        "success": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "result_size_value": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Size in result_size_unit (UTF-8 bytes). CANONICALIZATION RULE, so string- and array-shaped results are not pooled apples-to-oranges: measure the UTF-8 byte length of the source's TEXT content after documented block extraction. Claude Code's tool_result.content is a bare string in ~92% of sampled blocks and an array of typed blocks in the rest; for the array form, extract the text-typed blocks' text in order and concatenate with no separator, then measure. Non-text blocks (images etc.) contribute 0 bytes and force field_status 'inferred' for this field, since their real payload size is not represented."
+        },
+        "result_size_unit": {
+          "type": "string",
+          "const": "utf8_bytes",
+          "description": "Only supported unit in v0.1. Present as an explicit const rather than an implicit convention so a future line-based or token-based measure cannot silently reuse result_size_value's meaning."
+        },
+        "result_size_method": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "reconstructed_from_range",
+            "unavailable"
+          ],
+          "description": "MUST be reconstructed_from_range for any Copilot read_file result \u2014 tool_response is empty string on every observed payload (verified live against real payloads, 2026-08-01). direct and reconstructed_from_range values must never be pooled in one statistic without this method traveling with the number."
+        }
+      },
+      "required": [
+        "result_size_value",
+        "result_size_unit",
+        "result_size_method"
+      ],
+      "additionalProperties": false,
+      "$comment": "All three are required. result_size_unit was previously optional, which defeated the point of making the unit explicit \u2014 it could simply be omitted. result_size_value is required but nullable: 'unavailable' must be said out loud (null + field_status 'unavailable'), not expressed by leaving the key out, so every tool result carries an unambiguous size representation."
+    },
+    "thinking": {
+      "type": "object",
+      "description": "Required when (and only when) event_type == thinking \u2014 enforced by the allOf conditionals below. Content itself is never part of the canonical event. There is no length_status property: the per-field status lives in the envelope's field_status map, like every other variable field.",
+      "properties": {
+        "length_value": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "UTF-8 byte length of the thinking block's text, same canonicalization as tool_result.result_size_value. Claude Code emits thinking blocks whose .thinking string may be empty with a populated .signature \u2014 an empty-but-present block is length_value 0 with field_status 'observed', NOT 'unavailable'."
+        }
+      },
+      "additionalProperties": false
+    },
+    "assistant_message": {
+      "type": "object",
+      "description": "Required when (and only when) event_type == assistant_message. Per-message token usage is verified-observed for this client, but the envelope originally had no payload to hold it, so an adapter would have had to discard it. CRITICAL EMISSION RULE: exactly ONE assistant_message event per raw assistant response. A raw response commonly explodes into several events (thinking + text + N tool_use blocks); attaching this usage block to each of them would multiply-count the response's tokens. The usage belongs to the response envelope, not to any individual content block. Two-sided enforcement: the dataset validator enforces AT MOST ONE assistant_message event per raw source line (no double-count), and the raw-fixture adapter tests assert EXACTLY ONE per normalized assistant source line (no silent drop \u2014 'at most one' is satisfied by zero, which would discard a response's tokens and still pass).",
+      "properties": {
+        "input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "cache_read_input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "cache_creation_input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "The flat top-level number only. The real source block also nests iterations[], server_tool_use, cache_creation{ephemeral_1h,ephemeral_5m}, service_tier and speed; v0.1 deliberately takes none of those. Adding them later is a v0.2 decision, not an adapter improvisation."
+        }
+      },
+      "additionalProperties": false
+    },
+    "user_message": {
+      "type": "object",
+      "description": "Required when (and only when) event_type == user_message. Carries prompt_source so later analysis can distinguish human, SDK, suggestion, and system-originated turns without redefining turn_index.",
+      "properties": {
+        "prompt_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "typed",
+            "suggestion_accepted",
+            "system",
+            "sdk",
+            null
+          ],
+          "description": "Observed vocabulary across the surveyed corpus: typed (498), suggestion_accepted (49), system (4), sdk (2). All four open a turn \u2014 see turn_index. A value outside this enum means the client introduced a new prompt source and MUST fail rather than be coerced to null; that is the same fail-loudly discipline as an unrecognized raw record type."
+        }
+      },
+      "additionalProperties": false
+    },
+    "compaction": {
+      "type": "object",
+      "description": "Required when (and only when) event_type == compaction \u2014 enforced by the allOf conditionals below. compaction is real, observed, and directly relevant to agent-context behavior, but v0.1 originally defined no payload for it, so genuinely observed data had nowhere to go. NEVER carries the compacted summary text \u2014 that is raw content, Tier 1 only, reachable via raw_source_ref.",
+      "properties": {
+        "compaction_source": {
+          "type": "string",
+          "enum": [
+            "boundary_marker",
+            "continuation_summary",
+            "unavailable"
+          ],
+          "description": "Discriminator for which raw record this event came from \u2014 Claude Code emits TWO distinct records per compaction and they must not be conflated. 'boundary_marker': a system line with subtype 'compact_boundary', which carries the real compactMetadata numbers. 'continuation_summary': a user line with isCompactSummary true, which carries the resulting summary text (never copied here) and NO metrics. 'unavailable': client signals a compaction occurred with no distinguishable source record."
+        },
+        "trigger": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "auto",
+            "manual",
+            null
+          ],
+          "description": "Observed on Claude Code boundary_marker records as compactMetadata.trigger. Null/unavailable on continuation_summary records \u2014 do not infer it from the sibling record; a separate event carries that."
+        },
+        "pre_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "post_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "cumulative_dropped_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Observed on newer Claude Code versions only \u2014 absent from 2.1.150-era boundary records that carry pre/post_tokens and durationMs but no cumulative field. Omit (with field_status 'unavailable') rather than computing it from pre/post, which would be a different quantity presented as observed."
+        },
+        "duration_ms": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "tool_call"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "tool_call"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "tool_result"
+              ]
+            },
+            {
+              "required": [
+                "thinking"
+              ]
+            },
+            {
+              "required": [
+                "compaction"
+              ]
+            },
+            {
+              "required": [
+                "assistant_message"
+              ]
+            },
+            {
+              "required": [
+                "user_message"
+              ]
+            }
+          ]
+        }
+      },
+      "$comment": "event_type 'tool_call' requires its own payload and forbids ALL 5 others. Generated exhaustively rather than hand-maintained: this exclusivity drifted twice during development because adding a payload type means updating every pre-existing branch, which is easy to miss by hand."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "tool_result"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "tool_result"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "tool_call"
+              ]
+            },
+            {
+              "required": [
+                "thinking"
+              ]
+            },
+            {
+              "required": [
+                "compaction"
+              ]
+            },
+            {
+              "required": [
+                "assistant_message"
+              ]
+            },
+            {
+              "required": [
+                "user_message"
+              ]
+            }
+          ]
+        }
+      },
+      "$comment": "event_type 'tool_result' requires its own payload and forbids ALL 5 others. Generated exhaustively rather than hand-maintained: this exclusivity drifted twice during development because adding a payload type means updating every pre-existing branch, which is easy to miss by hand."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "thinking"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "thinking"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "tool_call"
+              ]
+            },
+            {
+              "required": [
+                "tool_result"
+              ]
+            },
+            {
+              "required": [
+                "compaction"
+              ]
+            },
+            {
+              "required": [
+                "assistant_message"
+              ]
+            },
+            {
+              "required": [
+                "user_message"
+              ]
+            }
+          ]
+        }
+      },
+      "$comment": "event_type 'thinking' requires its own payload and forbids ALL 5 others. Generated exhaustively rather than hand-maintained: this exclusivity drifted twice during development because adding a payload type means updating every pre-existing branch, which is easy to miss by hand."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "compaction"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "compaction"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "tool_call"
+              ]
+            },
+            {
+              "required": [
+                "tool_result"
+              ]
+            },
+            {
+              "required": [
+                "thinking"
+              ]
+            },
+            {
+              "required": [
+                "assistant_message"
+              ]
+            },
+            {
+              "required": [
+                "user_message"
+              ]
+            }
+          ]
+        }
+      },
+      "$comment": "event_type 'compaction' requires its own payload and forbids ALL 5 others. Generated exhaustively rather than hand-maintained: this exclusivity drifted twice during development because adding a payload type means updating every pre-existing branch, which is easy to miss by hand."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "assistant_message"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "assistant_message"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "tool_call"
+              ]
+            },
+            {
+              "required": [
+                "tool_result"
+              ]
+            },
+            {
+              "required": [
+                "thinking"
+              ]
+            },
+            {
+              "required": [
+                "compaction"
+              ]
+            },
+            {
+              "required": [
+                "user_message"
+              ]
+            }
+          ]
+        }
+      },
+      "$comment": "event_type 'assistant_message' requires its own payload and forbids ALL 5 others. Generated exhaustively rather than hand-maintained: this exclusivity drifted twice during development because adding a payload type means updating every pre-existing branch, which is easy to miss by hand."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "user_message"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "user_message"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "tool_call"
+              ]
+            },
+            {
+              "required": [
+                "tool_result"
+              ]
+            },
+            {
+              "required": [
+                "thinking"
+              ]
+            },
+            {
+              "required": [
+                "compaction"
+              ]
+            },
+            {
+              "required": [
+                "assistant_message"
+              ]
+            }
+          ]
+        }
+      },
+      "$comment": "event_type 'user_message' requires its own payload and forbids ALL 5 others. Generated exhaustively rather than hand-maintained: this exclusivity drifted twice during development because adding a payload type means updating every pre-existing branch, which is easy to miss by hand."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "enum": [
+              "session_start",
+              "session_end"
+            ]
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "tool_call"
+              ]
+            },
+            {
+              "required": [
+                "tool_result"
+              ]
+            },
+            {
+              "required": [
+                "thinking"
+              ]
+            },
+            {
+              "required": [
+                "compaction"
+              ]
+            },
+            {
+              "required": [
+                "assistant_message"
+              ]
+            },
+            {
+              "required": [
+                "user_message"
+              ]
+            }
+          ]
+        }
+      },
+      "$comment": "session_start/session_end carry no typed payload of any kind."
+    },
+    {
+      "if": {
+        "anyOf": [
+          {
+            "required": [
+              "tool_call"
+            ]
+          },
+          {
+            "required": [
+              "tool_result"
+            ]
+          },
+          {
+            "required": [
+              "thinking"
+            ]
+          },
+          {
+            "required": [
+              "compaction"
+            ]
+          },
+          {
+            "required": [
+              "assistant_message"
+            ]
+          },
+          {
+            "required": [
+              "user_message"
+            ]
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "field_status": {
+            "minProperties": 1
+          }
+        }
+      },
+      "$comment": "Partial mechanical enforcement of field_status non-emptiness \u2014 per-field cross-validation is a dataset-level concern, see the field_status description."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_origin": {
+            "const": "synthesized"
+          }
+        },
+        "required": [
+          "event_origin"
+        ]
+      },
+      "then": {
+        "required": [
+          "synthesis_reason"
+        ],
+        "properties": {
+          "synthesis_reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "$comment": "a synthesized event cannot be emitted without stating why it was constructed \u2014 closes 'no synthesized claim can be mistaken for observed data'."
+    },
+    {
+      "if": {
+        "properties": {
+          "event_origin": {
+            "const": "observed"
+          }
+        },
+        "required": [
+          "event_origin"
+        ]
+      },
+      "then": {
+        "properties": {
+          "synthesis_reason": {
+            "const": null
+          }
+        }
+      },
+      "$comment": "an observed event must not carry a synthesis rationale."
+    },
+    {
+      "if": {
+        "properties": {
+          "source_client": {
+            "const": "claude-code"
+          },
+          "event_type": {
+            "enum": [
+              "session_start",
+              "session_end"
+            ]
+          }
+        },
+        "required": [
+          "source_client",
+          "event_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "event_origin": {
+            "const": "synthesized"
+          }
+        }
+      },
+      "$comment": "Fixture-derived: Claude Code emits no native session_start/session_end record in any surveyed session, so a claude-code event of either type claiming event_origin 'observed' is provably false and must fail validation. Scoped to claude-code deliberately \u2014 another client may genuinely observe these, and that is a per-client fact for the capability matrix, not a global assumption."
+    }
+  ]
+}

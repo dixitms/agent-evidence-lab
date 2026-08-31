@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1.1",
+  "run_id": "cf7d9a8e-6cab-4f40-be87-1b3d4e5f6a77",
+  "run_kind": "calibration",
+  "condition": "baseline",
+  "policy_id": null,
+  "policy_version": null,
+  "model": null,
+  "model_source": null,
+  "task_id": "apl-task-001-clean-file-reread",
+  "pinned_commit": "4a7f2c9e1b8d3f05a6c2e9b7d4f10a3c5e8b6d29",
+  "repo_url": "https://github.com/django/django",
+  "disposition": "completed_analyzable",
+  "created_at": "2026-08-19T15:00:00Z"
+}

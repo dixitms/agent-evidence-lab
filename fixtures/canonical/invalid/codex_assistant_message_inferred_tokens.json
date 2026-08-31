@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.2.0",
+  "event_id": "aaaa1111-2222-4333-8444-555555555555",
+  "sequence_index": 5,
+  "run_id": "6f1d3a2e-0c4b-4f8a-9e21-5b7c8d9e0a11",
+  "source_client": "codex-cli",
+  "source_client_version": "0.147.0",
+  "session_id": "sha256:codexfixture0000000000000000000000000000000000000000000000000000",
+  "repo_ref": "sha256:codexrepo00000000000000000000000000000000000000000000000000000000",
+  "turn_index": 0,
+  "event_type": "assistant_message",
+  "event_origin": "observed",
+  "field_status": {
+    "output_tokens": "inferred"
+  },
+  "assistant_message": {
+    "input_tokens": null,
+    "output_tokens": 542,
+    "cache_read_input_tokens": null,
+    "cache_creation_input_tokens": null
+  },
+  "synthesis_reason": null
+}

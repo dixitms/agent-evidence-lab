@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-policy-lab"
+version = "0.1.0"
+description = "Local-first reference implementation for privacy-bounded coding-agent trace analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["jsonschema>=4.21,<5"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# The schemas remain readable at the repository root and are also installed
+# under the environment prefix so the runtime validators work from a wheel.
+[tool.setuptools.data-files]
+"schema/v0.1" = [
+  "schema/v0.1/agent_event.schema.json",
+  "schema/v0.1/experiment_run.schema.json",
+]
+"schema/v0.2" = [
+  "schema/v0.2/agent_event.schema.json",
+  "schema/v0.2/experiment_run.schema.json",
+]
+"schema/ledger/v1" = ["schema/ledger/v1/run_ledger.schema.json"]
+"schema/ledger/v2" = ["schema/ledger/v2/run_ledger.schema.json"]
+"schema" = [
+  "schema/compaction_continuity_annotation.schema.json",
+  "schema/local_discovery_report.schema.json",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

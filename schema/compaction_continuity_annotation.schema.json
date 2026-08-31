@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "compaction_continuity_annotation.schema.json",
+  "title": "Compaction Continuity Local Annotation",
+  "description": "A local reviewer's classification of one compaction window, recorded as controlled codes only. Tier 1 terminal: this artifact has no export form and no screened derivative. It carries no session identifier, no event identifier, no transcript excerpt, no path, no tool argument or output, and no free text; the reviewed context is read locally and is never copied here. The candidate window is referenced solely by an opaque keyed handle, which is meaningless without the local key that produced it. Cross-field rules that JSON Schema cannot express -- the handle matching its window, the outcome's required and forbidden rationale codes, and the review-completeness rule for a determinate outcome -- are enforced by validate_annotation in src/agent_policy_lab/compaction_continuity.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "annotation_version",
+    "window_id",
+    "review_mode",
+    "reviewer_role",
+    "outcome",
+    "rationale_codes",
+    "reviewed"
+  ],
+  "properties": {
+    "annotation_version": {"const": "1.0.0"},
+    "window_id": {
+      "type": "string",
+      "pattern": "^ccw-[0-9a-f]{32}$",
+      "description": "Opaque keyed digest of the session and the boundary position. It commits to both, so an annotation cannot be reattached to a different boundary, and it discloses neither without the local key."
+    },
+    "review_mode": {
+      "const": "local_human_review",
+      "description": "The only permitted mode. Canonical events bound a candidate window; they never produce an outcome."
+    },
+    "reviewer_role": {"enum": ["operator", "independent_reviewer"]},
+    "outcome": {
+      "description": "The reviewer's classification. 'resumed_superseded_task' is the finding this diagnostic exists to detect and carries the strictest evidence requirement; 'legitimate_revisit' is the benign case it must be distinguishable from.",
+      "enum": [
+        "continued_current_task",
+        "resumed_superseded_task",
+        "legitimate_revisit",
+        "unclear"
+      ]
+    },
+    "rationale_codes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "A closed vocabulary, deliberately not free text. Which codes each outcome requires, and which contradict it, are enforced in compaction_continuity.py: an outcome may not be recorded alongside a code that argues against it.",
+      "items": {
+        "enum": [
+          "latest_task_addressed",
+          "latest_task_not_addressed",
+          "superseded_task_addressed",
+          "user_authorised_revisit",
+          "dependency_requires_revisit",
+          "insufficient_context",
+          "ambiguous_task_state"
+        ]
+      }
+    },
+    "reviewed": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What the reviewer confirms they actually read locally. Every check must be true for any outcome other than 'unclear'.",
+      "required": [
+        "pre_boundary_context",
+        "latest_active_instruction",
+        "post_boundary_activity",
+        "earlier_superseded_instruction"
+      ],
+      "properties": {
+        "pre_boundary_context": {"type": "boolean"},
+        "latest_active_instruction": {"type": "boolean"},
+        "post_boundary_activity": {"type": "boolean"},
+        "earlier_superseded_instruction": {"type": "boolean"}
+      }
+    }
+  }
+}

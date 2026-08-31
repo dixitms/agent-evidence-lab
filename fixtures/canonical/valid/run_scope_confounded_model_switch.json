@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.1",
+  "run_id": "9c4a6d5b-3f7e-4c1d-8b54-8e0a1b2c3d44",
+  "run_kind": "controlled_public_benchmark",
+  "condition": "baseline",
+  "policy_id": null,
+  "policy_version": null,
+  "model": "claude-sonnet-5",
+  "task_id": "apl-task-001-clean-file-reread",
+  "pinned_commit": "4a7f2c9e1b8d3f05a6c2e9b7d4f10a3c5e8b6d29",
+  "repo_url": "https://github.com/django/django",
+  "disposition": "scope_confounded",
+  "model_evidence_consistent": false,
+  "disposition_reason": "Agent-turn evidence showed a mid-run model switch; run kept in the record so the confound is visible, dropped from the comparison.",
+  "created_at": "2026-08-19T12:45:00Z",
+  "model_source": "declared_preflight"
+}

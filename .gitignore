@@ -1,0 +1,25 @@
+# Python build/runtime artifacts
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# macOS Finder metadata is workstation noise, never project content.
+.DS_Store
+
+# Local-only Tier 1 data. These entries complement, but do not replace, the
+# application's fail-closed privacy and export controls.
+/tier1/
+/*.raw.jsonl
+*.raw.jsonl
+*.local.jsonl
+
+# Local secrets and private release staging.
+.secrets/
+*.secret
+.public-release/
