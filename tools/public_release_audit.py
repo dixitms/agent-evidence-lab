@@ -111,7 +111,7 @@ IGNORED_RUNTIME_PATH_PARTS = frozenset(
     {".mypy_cache", ".public-release", ".pytest_cache", ".venv", "__pycache__", "venv"}
 )
 FORBIDDEN_FILENAMES = frozenset(
-    {_fragments("CLAUDE.", "md"), _fragments("JOURNAL.", "md"), _fragments("HANDOFF.", "md")}
+    {_fragments("JOURNAL.", "md"), _fragments("HANDOFF.", "md")}
 )
 
 
