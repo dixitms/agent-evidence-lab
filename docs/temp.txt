@@ -1,1 +1,373 @@
-test
+Insurance Enterprise Capability Map (ACORD-Aligned)
+1. Product Development & Actuarial Management
+ * Level 1: 1.0 Product Development & Actuarial Management
+   * Level 2: 1.1 Market & Product Research
+     * Level 3: 1.1.1 Competitive Market Analysis
+       * Level 4: 1.1.1.1 Capture competitor rate filings, policy forms, and rule circulars (e.g., ISO/AAIS)
+       * Level 4: 1.1.1.2 Benchmark market share, line-of-business loss ratios, and retention trends
+       * Level 4: 1.1.1.3 Identify unserved/underserved risk segments and distribution coverage gaps
+     * Level 3: 1.1.2 Product Ideation & Feasibility Assessment
+       * Level 4: 1.1.2.1 Formulate target risk profiles, coverage definitions, and exclusions
+       * Level 4: 1.1.2.2 Conduct preliminary legal, regulatory, and capital-requirement feasibility reviews
+       * Level 4: 1.1.2.3 Estimate target loss costs, operational expense loads, and profit margins
+   * Level 2: 1.2 Actuarial Pricing & Experience Analysis
+     * Level 3: 1.2.1 Loss Cost Modeling & Data Aggregation
+       * Level 4: 1.2.1.1 Extract, cleanse, and organize historical earned exposure and incurred loss data
+       * Level 4: 1.2.1.2 Apply loss development factors (LDFs) to mature losses to ultimate values
+       * Level 4: 1.2.1.3 Adjust exposure and loss trends for severity, frequency, and pure premium drift
+     * Level 3: 1.2.2 Predictive Rate Modeling & Tariff Structuring
+       * Level 4: 1.2.2.1 Develop Generalized Linear Models (GLMs) and machine-learning risk relativities
+       * Level 4: 1.2.2.2 Calibrate rating tiers, minimum premiums, and territory/class code discount factors
+       * Level 4: 1.2.2.3 Calculate fixed, variable, and unallocated loss adjustment expense (ULAE) loadings
+     * Level 3: 1.2.3 Rate Indication & Disruption Analysis
+       * Level 4: 1.2.3.1 Produce overall statewide/regional rate level indications by coverage
+       * Level 4: 1.2.3.2 Perform in-force book disruption and policyholder premium impact profiling
+       * Level 4: 1.2.3.3 Define rate capping, transition rules, and multi-year rollout schedules
+   * Level 2: 1.3 Policy Form Design & Regulatory Filings
+     * Level 3: 1.3.1 Contract Drafting & Endorsement Structuring
+       * Level 4: 1.3.1.1 Draft core insuring agreements, conditions, deductibles, and definitions
+       * Level 4: 1.3.1.2 Construct mandatory, optional, and state-specific endorsement schedules
+       * Level 4: 1.3.1.3 Harmonize contract terms with primary, excess, and umbrella program requirements
+     * Level 3: 1.3.2 Regulatory Filing Preparation & Management
+       * Level 4: 1.3.2.1 Assemble filing packages via regulatory portals (e.g., SERFF)
+       * Level 4: 1.3.2.2 Compile actuarial memorandums, rate exhibits, and explanatory rule manuals
+       * Level 4: 1.3.2.3 Track Department of Insurance (DOI) objections, interrogatories, and approvals
+   * Level 2: 1.4 Product Systems Configuration & Release
+     * Level 3: 1.4.1 Rating Engine Configuration
+       * Level 4: 1.4.1.1 Translate manual rate algorithms and tables into digital rating engines
+       * Level 4: 1.4.1.2 Define cross-field rating dependencies, rounding rules, and tier validations
+       * Level 4: 1.4.1.3 Execute regression test suites across multi-variable quoting scenarios
+     * Level 3: 1.4.2 Document & Template Publishing
+       * Level 4: 1.4.2.1 Configure dynamic variable tags and conditionality in document templates
+       * Level 4: 1.4.2.2 Authorize digital signature layouts, notices, and billing schedule layouts
+       * Level 4: 1.4.2.3 Deploy finalized product artifacts across Policy, Billing, and Claims engines
+   * Level 2: 1.5 Actuarial Reserving & Capital Management
+     * Level 3: 1.5.1 IBNR & Reserve Estimation
+       * Level 4: 1.5.1.1 Execute Chain Ladder, Bornhuetter-Ferguson, and Cape Cod reserving models
+       * Level 4: 1.5.1.2 Calculate Incurred But Not Reported (IBNR) and Incurred But Not Enough Reported (IBNER)
+       * Level 4: 1.5.1.3 Evaluate Allocated Loss Adjustment Expense (ALAE) reserve sufficiency
+     * Level 3: 1.5.2 Solvency & Capital Adequacy Modeling
+       * Level 4: 1.5.2.1 Perform Risk-Based Capital (RBC) and Own Risk and Solvency Assessment (ORSA) stress runs
+       * Level 4: 1.5.2.2 Run Dynamic Financial Analysis (DFA) under extreme asset/liability stress regimes
+       * Level 4: 1.5.2.3 Formulate Appointed Actuary Statements of Actuarial Opinion (SAO)
+2. Distribution, Sales & Marketing
+ * Level 1: 2.0 Distribution, Sales & Marketing
+   * Level 2: 2.1 Distribution Channel Administration
+     * Level 3: 2.1.1 Intermediary Onboarding & Due Diligence
+       * Level 4: 2.1.1.1 Collect agency profiles, licensing documentation, and tax identification (W-9/FATCA)
+       * Level 4: 2.1.1.2 Validate active insurance producer licenses, state appointments, and line authorities
+       * Level 4: 2.1.1.3 Verify Errors & Omissions (E&O) coverage limits and carrier exclusions
+     * Level 3: 2.1.2 Producer Contracting & Relationship Management
+       * Level 4: 2.1.2.1 Execute broker/agency agreements, sub-producer clauses, and binding authorities
+       * Level 4: 2.1.2.2 Manage producer hierarchies, agency branching, and ownership structures
+       * Level 4: 2.1.2.3 Review producer financial soundness, loss ratios, and annual production quotas
+   * Level 2: 2.2 Compensation, Incentive & Commission Management
+     * Level 3: 2.2.1 Commission Schedule Administration
+       * Level 4: 2.2.1.1 Establish base commission tiers by line, product, state, and transaction type
+       * Level 4: 2.2.1.2 Manage split-commission percentages across co-brokers and internal producers
+       * Level 4: 2.2.1.3 Compute and execute pro-rata commission adjustments on mid-term policy changes
+     * Level 3: 2.2.2 Contingent Commission & Bonus Calculation
+       * Level 4: 2.2.2.1 Track agency loss ratio thresholds, volume metrics, and profitability bands
+       * Level 4: 2.2.2.2 Calculate year-end contingent profit-sharing distributions and growth bonuses
+       * Level 4: 2.2.2.3 Reconcile overpayments, retrospective chargebacks, and broker-of-record clawbacks
+   * Level 2: 2.3 Customer & Intermediary Engagement
+     * Level 3: 2.3.1 Portal & API Distribution Integration
+       * Level 4: 2.3.1.1 Maintain real-time comparative rater APIs using ACORD XML/JSON standards
+       * Level 4: 2.3.1.2 Enable agent/customer digital self-service quote intake and status dashboards
+       * Level 4: 2.3.1.3 Manage identity, single sign-on (SSO), and role-based portal entitlements
+     * Level 3: 2.3.2 Lead Generation & Campaign Management
+       * Level 4: 2.3.2.1 Ingest multi-channel prospects, aggregator leads, and direct digital inquiries
+       * Level 4: 2.3.2.2 Score and route leads based on appetite fit, geography, and producer capacity
+       * Level 4: 2.3.2.3 Monitor customer conversion, quote hit rates, and acquisition cost per policy
+3. Underwriting & Policy Administration
+ * Level 1: 3.0 Underwriting & Policy Administration
+   * Level 2: 3.1 Submission Intake & Clearance
+     * Level 3: 3.1.1 Submission Ingestion & Data Capture
+       * Level 4: 3.1.1.1 Ingest structured ACORD forms (e.g., 125, 126, 130) and unstructured schedule attachments
+       * Level 4: 3.1.1.2 Extract text, asset tables, and entity names via OCR and document parsing
+       * Level 4: 3.1.1.3 Standardize addresses, operations, and vehicle schedules against industry databases
+     * Level 3: 3.1.2 Clearance & Conflict Management
+       * Level 4: 3.1.2.1 Check customer names and locations against in-force portfolios and submissions
+       * Level 4: 3.1.2.2 Resolve broker-of-record conflicts and determine producer of record priority
+       * Level 4: 3.1.2.3 Enforce office of primary responsibility (OPR) and lines-of-business underwriting routing
+   * Level 2: 3.2 Risk Assessment, Scoring & Qualification
+     * Level 3: 3.2.1 External Data Enrichment & Verification
+       * Level 4: 3.2.1.1 Order and parse MVRs, LexisNexis C.L.U.E., and commercial loss-run histories
+       * Level 4: 3.2.1.2 Pull property geocoding, building characteristics, and wildland/flood zone data
+       * Level 4: 3.2.1.3 Retrieve business financials, credit scores, OSHA violations, and D&B metrics
+     * Level 3: 3.2.2 Appetite & Underwriting Rule Evaluation
+       * Level 4: 3.2.2.1 Evaluate SIC/NAICS industry classifications against corporate underwriting appetite
+       * Level 4: 3.2.2.2 Trigger automated straight-through processing (STP) rules for clean risk profiles
+       * Level 4: 3.2.2.3 Flag hazard exposures, historical frequency anomalies, and moral risk attributes
+     * Level 3: 3.2.3 Loss Control & Engineering Survey Management
+       * Level 4: 3.2.3.1 Schedule on-site or virtual physical property and workplace safety inspections
+       * Level 4: 3.2.3.2 Record risk engineer recommendations, COPE factors, and life-safety assessments
+       * Level 4: 3.2.3.3 Track insured compliance with mandatory risk improvement recommendations
+   * Level 2: 3.3 Pricing, Rating & Quote Structuring
+     * Level 3: 3.3.1 Premium Calculation & Schedule Rating
+       * Level 4: 3.3.1.1 Apply base rates, territory multipliers, and class code specific factors
+       * Level 4: 3.3.1.2 Calculate schedule rating debits and credits within discretionary authority limits
+       * Level 4: 3.3.1.3 Compute experience rating modifications (e.g., NCCI mod) and package discounts
+     * Level 3: 3.3.2 Quote Generation & Negotiation
+       * Level 4: 3.3.2.1 Assemble formal multi-option quote proposals with variable limits and deductibles
+       * Level 4: 3.3.2.2 Specify subjectivities, warranty statements, and required conditional exclusions
+       * Level 4: 3.3.2.3 Track underwriter negotiations, rate deviations, and expiring coverage benchmarks
+   * Level 2: 3.4 Binding & Policy Issuance
+     * Level 3: 3.4.1 Bind Order Processing & Verification
+       * Level 4: 3.4.1.1 Validate satisfaction of all pre-bind underwriting subjectivities
+       * Level 4: 3.4.1.2 Ingest signed bind requests, down payments, and mandatory legal disclosures
+       * Level 4: 3.4.1.3 Confirm line assignment, capacity allotments, and aggregate exposure balances
+     * Level 3: 3.4.2 Contract Construction & Document Delivery
+       * Level 4: 3.4.2.1 Generate the policy declaration page, schedule of forms, and master policy terms
+       * Level 4: 3.4.2.2 Assign unique statutory policy numbers and line-of-business identification tags
+       * Level 4: 3.4.2.3 Deliver digital policy packages via secure channels to insureds, brokers, and lienholders
+   * Level 2: 3.5 Mid-Term Lifecycle Management (Policy Servicing)
+     * Level 3: 3.5.1 Policy Endorsements & Mid-Term Alterations
+       * Level 4: 3.5.1.1 Process additions, modifications, and deletions to covered risks and locations
+       * Level 4: 3.5.1.2 Calculate pro-rata and short-rate financial adjustments on coverage alterations
+       * Level 4: 3.5.1.3 Issue certificates of insurance (COIs) and additional insured endorsements
+     * Level 3: 3.5.2 Cancellations, Reinstatements & Non-Renewals
+       * Level 4: 3.5.2.1 Issue statutory notices of cancellation for non-payment, fraud, or underwriting reasons
+       * Level 4: 3.5.2.2 Manage formal rescission, conditional reinstatements, and lapse-in-coverage waivers
+       * Level 4: 3.5.2.3 Prepare statutory non-renewal letters within jurisdiction-mandated day windows
+     * Level 3: 3.5.3 Policy Renewal Processing
+       * Level 4: 3.5.3.1 Execute automatic renewal sweeps and trigger pre-renewal risk re-evaluations
+       * Level 4: 3.5.3.2 Generate renewal offers with re-rated payroll, updated sales receipts, and indexation
+       * Level 4: 3.5.3.3 Track expiring-versus-renewal terms, quote follow-ups, and opt-out actions
+   * Level 2: 3.6 Premium Audit Administration
+     * Level 3: 3.6.1 Audit Assignment & Information Collection
+       * Level 4: 3.6.1.1 Identify auditable policy structures (e.g., payroll, gross sales, units built)
+       * Level 4: 3.6.1.2 Dispatch self-audit requests, hybrid mailings, or physical auditor orders
+       * Level 4: 3.6.1.3 Ingest payroll ledgers, state quarterly filings (Form 941), and general ledgers
+     * Level 3: 3.6.2 Audit Reconciliation & Billing True-Up
+       * Level 4: 3.6.2.1 Reconcile reported classifications against observed operations and sub-contractor lists
+       * Level 4: 3.6.2.2 Calculate final earned exposure and compute additional or return audit premium
+       * Level 4: 3.6.2.3 Process audit disputes, revisits, and non-compliance penalty endorsements
+4. Billing & Collection
+ * Level 1: 4.0 Billing & Collection
+   * Level 2: 4.1 Billing Setup & Account Management
+     * Level 3: 4.1.1 Account & Plan Configuration
+       * Level 4: 4.1.1.1 Establish direct-bill, agency-bill, split-bill, or list-bill (payroll deduction) accounts
+       * Level 4: 4.1.1.2 Configure multi-policy master billing accounts with consolidated invoicing schedules
+       * Level 4: 4.1.1.3 Assign installment schedules (e.g., annual, semi-annual, quarterly, 10-pay, 12-pay)
+     * Level 3: 4.1.2 Payment Channel & Profile Administration
+       * Level 4: 4.1.2.1 Tokenize ACH/EFT bank accounts and credit/debit card credentials (PCI-DSS compliant)
+       * Level 4: 4.1.2.2 Set up automated recurring payment mandates and account verification pings
+       * Level 4: 4.1.2.3 Update card-on-file registries via automated network card updater routines
+   * Level 2: 4.2 Invoice Generation & Premium Billing
+     * Level 3: 4.2.1 Installment & Fee Calculation
+       * Level 4: 4.2.1.1 Disaggregate total policy premium into installment schedules according to plan rules
+       * Level 4: 4.2.1.2 Append installment fees, late fees, inspection fees, and statutory state surcharges
+       * Level 4: 4.2.1.3 Re-amortize unbilled schedule installments following mid-term endorsement adjustments
+     * Level 3: 4.2.2 Statement Generation & Presentation
+       * Level 4: 4.2.2.1 Compile monthly billing statements, premium breakdown notices, and coupon books
+       * Level 4: 4.2.2.2 Distribute electronic bills (e-Bills) and trigger SMS/email payment notifications
+       * Level 4: 4.2.2.3 Generate agency-bill monthly account reconciliations and account-current statements
+   * Level 2: 4.3 Payment Ingestion & Cash Allocation
+     * Level 3: 4.3.1 Cash Receipt Processing
+       * Level 4: 4.3.1.1 Ingest daily lockbox files, automated check clearing, wire transfers, and ACH returns
+       * Level 4: 4.3.1.2 Capture real-time credit card, debit, and digital wallet gateway transactions
+       * Level 4: 4.3.1.3 Route non-policy payments to suspense accounts pending research and identification
+     * Level 3: 4.3.2 Payment Matching & Application
+       * Level 4: 4.3.2.1 Auto-match receipts to invoice IDs, policy numbers, or agency accounts
+       * Level 4: 4.3.2.2 Execute automated cash application cascades (e.g., fees, taxes, earned, unearned)
+       * Level 4: 4.3.2.3 Manage overpayment distributions, suspense resolutions, and credit balance transfers
+   * Level 2: 4.4 Delinquency, Dunning & Collections
+     * Level 3: 4.4.1 Delinquency Tracking & Dunning Administration
+       * Level 4: 4.4.1.1 Monitor past-due balances against grace period thresholds and state-specific timelines
+       * Level 4: 4.4.1.2 Issue reminder letters, past-due notifications, and statutory cure notices
+       * Level 4: 4.4.1.3 Trigger system cancellation notices for non-payment of premium (DNOP)
+     * Level 3: 4.4.2 Debt Recovery & Write-Off Management
+       * Level 4: 4.4.2.1 Refer bad-debt balances and earned premium uncollected to collection agencies
+       * Level 4: 4.4.2.2 Process third-party debt agency recovery remittances and service commissions
+       * Level 4: 4.4.2.3 Post bad-debt write-offs and manage statutory allowances for uncollectible premium
+   * Level 2: 4.5 Disbursements & Return Premiums
+     * Level 3: 4.5.1 Return Premium Processing
+       * Level 4: 4.5.1.1 Calculate unearned premium credit balances resulting from cancellations/endorsements
+       * Level 4: 4.5.1.2 Verify absence of outstanding policy debts across related insured accounts
+       * Level 4: 4.5.1.3 Issue electronic refunds or paper refund checks with explanatory settlement advices
+     * Level 3: 4.5.2 Intermediary Remittance Reconciliation
+       * Level 4: 4.5.2.1 Reconcile broker statement remittances against internal billing balances
+       * Level 4: 4.5.2.2 Track net vs. gross agency-bill premium reconciliations and dispute variances
+       * Level 4: 4.5.2.3 Process broker commission disbursement batches via automated bank transfers
+5. Claims Administration
+ * Level 1: 5.0 Claims Administration
+   * Level 2: 5.1 First Notice of Loss (FNOL) & Intake
+     * Level 3: 5.1.1 Intake & Initial Loss Recording
+       * Level 4: 5.1.1.1 Capture incident time, loss location, loss narrative, and involved parties
+       * Level 4: 5.1.1.2 Ingest initial third-party photos, dashcam footage, and police reports
+       * Level 4: 5.1.1.3 Assign unique master claim identifiers and establish incident record shells
+     * Level 3: 5.1.2 Policy Coverage Verification & Matching
+       * Level 4: 5.1.2.1 Match loss occurrence date against policy active coverage terms and status
+       * Level 4: 5.1.2.2 Verify covered perils, involved vehicles/properties, and named insured endorsements
+       * Level 4: 5.1.2.3 Identify potential coverage defects, gaps, or breaches of contract warranty
+     * Level 3: 5.1.3 Initial Coverage Position & Triage
+       * Level 4: 5.1.3.1 Issue standard reservation of rights (ROR) letters or non-waiver agreements
+       * Level 4: 5.1.3.2 Triage claim complexity, injury presence, and damage severity using rule engines
+       * Level 4: 5.1.3.3 Route claims to specialized handling units (e.g., catastrophe, bodily injury, fast-track)
+   * Level 2: 5.2 Special Investigation (SIU) & Fraud Detection
+     * Level 3: 5.2.1 Predictive Fraud Scoring & Screening
+       * Level 4: 5.2.1.1 Run incoming claim attributes against predictive fraud scorecards and network maps
+       * Level 4: 5.2.1.2 Screen for staged accidents, prior loss frequency, and jump-in claimant anomalies
+       * Level 4: 5.2.1.3 Analyze metadata, reverse-image databases, and digital photo alteration markers
+     * Level 3: 5.2.2 Special Investigation Unit (SIU) Workflow
+       * Level 4: 5.2.2.1 Refer claims meeting threshold indicators to SIU case management systems
+       * Level 4: 5.2.2.2 Conduct Examinations Under Oath (EUO) and cross-examine social media footprints
+       * Level 4: 5.2.2.3 Coordinate external fraud filings with state insurance fraud bureaus and regulators
+   * Level 2: 5.3 Claims Investigation, Evaluation & Reserving
+     * Level 3: 5.3.1 Liability & Incident Investigation
+       * Level 4: 5.3.1.1 Interview insureds, adverse drivers, witnesses, and responding officers
+       * Level 4: 5.3.1.2 Reconstruct accident scenes, compute stopping distances, and verify traffic controls
+       * Level 4: 5.3.1.3 Determine comparative/contributory negligence percentages based on state statutes
+     * Level 3: 5.3.2 Physical Damage Appraisal & Inspection
+       * Level 4: 5.3.2.1 Dispatch independent appraisers or manage self-service virtual photo estimating
+       * Level 4: 5.3.2.2 Review itemized damage estimates, labor operations, and paint charges
+       * Level 4: 5.3.2.3 Enforce OEM versus aftermarket parts usage and depreciation guidelines
+     * Level 3: 5.3.3 Injury Evaluation & Medical Bill Review
+       * Level 4: 5.3.3.1 Evaluate medical records, diagnostic scans, and treatment chronologies
+       * Level 4: 5.3.3.2 Perform medical bill audits against state workers' comp/PIP fee schedules
+       * Level 4: 5.3.3.3 Calculate pain and suffering, lost wages, and future medical treatment burdens
+     * Level 3: 5.3.4 Loss Reserving Administration
+       * Level 4: 5.3.4.1 Establish initial system-generated statistical reserves by line and coverage
+       * Level 4: 5.3.4.2 Adjust adjuster individual case reserves based on emerging medical and repair facts
+       * Level 4: 5.3.4.3 Maintain separate reserve categories for indemnity, ALAE, and medical expenses
+   * Level 2: 5.4 Claims Settlement & Disbursement
+     * Level 3: 5.4.1 Negotiation & Resolution Strategy
+       * Level 4: 5.4.1.1 Establish settlement target ranges, walk-away numbers, and structured options
+       * Level 4: 5.4.1.2 Conduct direct settlements with claimants or engage in formal ADR/mediation
+       * Level 4: 5.4.1.3 Obtain signed general releases, covenants not to sue, and court minor approvals
+     * Level 3: 5.4.2 Litigation Management & Legal Defense
+       * Level 4: 5.4.2.1 Assign defense counsel from approved panel rosters and communicate litigation budgets
+       * Level 4: 5.4.2.2 Enforce outside counsel billing guidelines via legal e-billing audit engines
+       * Level 4: 5.4.2.3 Review pleadings, motions for summary judgment, and trial exposure assessments
+     * Level 3: 5.4.3 Payment Authorization & Indemnity Disbursement
+       * Level 4: 5.4.3.1 Verify settlement amounts against individual adjuster authorization limits
+       * Level 4: 5.4.3.2 Issue single, multi-party, and attorney lien release checks or real-time payments
+       * Level 4: 5.4.3.3 Report non-resident alien withholding and mandatory IRS Form 1099-MISC filings
+   * Level 2: 5.5 Recovery (Subrogation, Salvage & Contribution)
+     * Level 3: 5.5.1 Subrogation Identification & Pursuit
+       * Level 4: 5.5.1.1 Flag third-party tortfeasor liability, product defect issues, and municipal neglect
+       * Level 4: 5.5.1.2 Issue subrogation demand packages to adverse carriers with liability evidence
+       * Level 4: 5.5.1.3 Submit unresolved subrogation files to inter-company arbitration (e.g., Arb Forums)
+     * Level 3: 5.5.2 Salvage Disposition & Title Processing
+       * Level 4: 5.5.2.1 Determine total loss thresholds based on repair-to-actual-cash-value (ACV) ratios
+       * Level 4: 5.5.2.2 Execute vehicle title transfers, branded salvage titles, and lien releases
+       * Level 4: 5.5.2.3 Manage salvage pool consignments, commercial auctions, and scrap sales
+     * Level 3: 5.5.3 Recovery Accounting & Insured Reimbursement
+       * Level 4: 5.5.3.1 Apply received salvage and subrogation proceeds against paid losses
+       * Level 4: 5.5.3.2 Reimburse insured deductibles in compliance with state "made-whole" doctrines
+       * Level 4: 5.5.3.3 Post net recovery accounting transactions and reduce incurred loss registers
+6. Reinsurance Management
+ * Level 1: 6.0 Reinsurance Management
+   * Level 2: 6.1 Reinsurance Strategy & Treaty Program Structuring
+     * Level 3: 6.1.1 Program Design & Modeling
+       * Level 4: 6.1.1.1 Evaluate net retention thresholds, risk tolerance, and capital protection targets
+       * Level 4: 6.1.1.2 Run catastrophe models (AIR/RMS) to evaluate Probable Maximum Loss (PML)
+       * Level 4: 6.1.1.3 Structure treaty layers (e.g., quota share, surplus lines, per-risk, cat excess of loss)
+     * Level 3: 6.1.2 Broker Placement & Counterparty Security
+       * Level 4: 6.1.2.1 Prepare comprehensive treaty placement slip terms, wordings, and schedules
+       * Level 4: 6.1.2.2 Analyze reinsurer AM Best/S&P financial ratings and sovereign stability metrics
+       * Level 4: 6.1.2.3 Track reinsurer participation shares, lead underwriter agreements, and firm orders
+   * Level 2: 6.2 Facultative Reinsurance Placement
+     * Level 3: 6.2.1 Facultative Identification & Submission
+       * Level 4: 6.2.1.1 Identify risks exceeding automatic treaty capacity limits or exclusion boundaries
+       * Level 4: 6.2.1.2 Assemble facultative underwriting packages, engineering surveys, and loss logs
+       * Level 4: 6.2.1.3 Solicit quotes from reinsurers for proportional and non-proportional facultative lines
+     * Level 3: 6.2.2 Facultative Binding & Policy Linking
+       * Level 4: 6.2.2.1 Bind facultative certificates and verify terms against the primary policy contract
+       * Level 4: 6.2.2.2 Link facultative certificate IDs directly to underlying policy line-level records
+       * Level 4: 6.2.2.3 Record specific warranty clauses, payment terms, and notice-of-cancellation rules
+   * Level 2: 6.3 Reinsurance Ceded Administration (Treaty & Fac Execution)
+     * Level 3: 6.3.1 Premium Cession & Attachment Calculation
+       * Level 4: 6.3.1.1 Apply treaty allocation logic across all in-force written and earned premium
+       * Level 4: 6.3.1.2 Calculate proportional premium cessions and compute sliding-scale ceding commissions
+       * Level 4: 6.3.1.3 Compute non-proportional minimum, deposit, and rate-on-line premium remittances
+     * Level 3: 6.3.2 Losses Ceded & Reinsurance Claims Processing
+       * Level 4: 6.3.2.1 Identify individual claims and aggregate events that breach treaty attachment points
+       * Level 4: 6.3.2.2 Issue preliminary and formal loss advices to reinsurers for significant reserve movements
+       * Level 4: 6.3.2.3 Prepare proof of loss and collect reinsurer indemnification and ALAE payments
+     * Level 3: 6.3.3 Reinsurance Accounting & Settlement
+       * Level 4: 6.3.3.1 Generate quarterly reinsurance statements of account, bordereaux, and transmittals
+       * Level 4: 6.3.3.2 Reconcile funds-held balances, letters of credit (LOCs), and collateral trusts
+       * Level 4: 6.3.3.3 Calculate and settle reinstatement premiums following catastrophic treaty recoveries
+   * Level 2: 6.4 Inward / Assumed Reinsurance Administration
+     * Level 3: 6.4.1 Assumed Contract Registration
+       * Level 4: 6.4.1.1 Record inward treaty participation agreements, layers, and attached conditions
+       * Level 4: 6.4.1.2 Track retrocession requirements, net lines assumed, and counterparty exposures
+     * Level 3: 6.4.2 Assumed Bordereau Ingestion & Processing
+       * Level 4: 6.4.2.1 Ingest assumed premium, loss, and aggregate bordereaux from ceding companies
+       * Level 4: 6.4.2.2 Reconcile cedant reported premiums, loss reserves, and paid loss figures
+       * Level 4: 6.4.2.3 Process assumed cash settlements, retroactive adjustments, and tax allocations
+7. Finance, Accounting & Regulatory Reporting
+ * Level 1: 7.0 Finance, Accounting & Regulatory Reporting
+   * Level 2: 7.1 Insurance Subledger Accounting
+     * Level 3: 7.1.1 Premium & Revenue Accounting
+       * Level 4: 7.1.1.1 Record Gross Written Premium (GWP), Net Written Premium, and Return Premiums
+       * Level 4: 7.1.1.2 Execute monthly Unearned Premium Reserve (UPR) calculations via 1/365th or 1/24th rules
+       * Level 4: 7.1.1.3 Post Earned Premium to General Ledger across statutory lines of business
+     * Level 3: 7.1.2 Loss & Loss Expense Accounting
+       * Level 4: 7.1.2.1 Post direct paid losses, subrogation/salvage credits, and indemnity disbursements
+       * Level 4: 7.1.2.2 Record case reserve movements and IBNR adjustments by underwriting year
+       * Level 4: 7.1.2.3 Reconcile Defense and Cost Containment (DCC) and Adjusting and Other (AO) expenses
+   * Level 2: 7.2 Multi-GAAP & Financial Consolidation
+     * Level 3: 7.2.1 Statutory vs. GAAP/IFRS Basis Conversion
+       * Level 4: 7.2.1.1 Calculate Deferred Acquisition Costs (DAC) and process GAAP/IFRS amortization
+       * Level 4: 7.2.1.2 Execute IFRS 17 calculations: Contractual Service Margin (CSM), Best Estimate Liabilities (BEL), and Risk Adjustment (RA)
+       * Level 4: 7.2.1.3 Process statutory non-admitted asset write-offs (e.g., furniture, past-due agent balances)
+     * Level 3: 7.2.2 Intercompany & Consolidations
+       * Level 4: 7.2.2.1 Execute intercompany cross-charges, management fees, and shared service allocations
+       * Level 4: 7.2.2.2 Reconcile and eliminate intercompany balances and intercompany reinsurance transactions
+       * Level 4: 7.2.2.3 Produce consolidated enterprise trial balances, balance sheets, and income statements
+   * Level 2: 7.3 Statutory & Regulatory Reporting
+     * Level 3: 7.3.1 NAIC Annual / Quarterly Statement Preparation
+       * Level 4: 7.3.1.1 Compile Balance Sheet (Assets, Liabilities, Surplus and Other Funds)
+       * Level 4: 7.3.1.2 Generate Underwriting and Investment Exhibits, Exhibit of Premiums and Losses
+       * Level 4: 7.3.1.3 Formulate Schedule P (Parts 1 through 6) for multi-year loss development analysis
+       * Level 4: 7.3.1.4 Build Schedule F for ceded reinsurance aging, collateralization, and penalties
+       * Level 4: 7.3.1.5 Populate Schedule D for bonds, stocks, and preferred investment allocations
+     * Level 3: 7.3.2 Solvency II / Regional Regulatory Reporting
+       * Level 4: 7.3.2.1 Prepare Solvency II Quantitative Reporting Templates (QRTs) for submission
+       * Level 4: 7.3.2.2 Calculate Solvency Capital Requirement (SCR) and Minimum Capital Requirement (MCR)
+       * Level 4: 7.3.2.3 Compile the Regular Supervisory Report (RSR) and Solvency and Financial Condition Report (SFCR)
+     * Level 3: 7.3.3 Statistical & Bureau Reporting
+       * Level 4: 7.3.3.1 Compile and validate monthly/quarterly statistical records (e.g., ISO, NCCI, ISS)
+       * Level 4: 7.3.3.2 Reconcile statistical unit reports against statutory annual statement totals
+       * Level 4: 7.3.3.3 Transmit certified statistical data files via designated bureau protocols
+   * Level 2: 7.4 Tax & Surcharge Administration
+     * Level 3: 7.4.1 Premium Tax Calculation & Filing
+       * Level 4: 7.4.1.1 Calculate state-by-state gross premium tax obligations based on risk exposure locations
+       * Level 4: 7.4.1.2 Compile municipal tax returns, police/fire district pensions, and state guaranty fund assessments
+       * Level 4: 7.4.1.3 Execute electronic returns and distribute payment vouchers to state departments of revenue
+     * Level 3: 7.4.2 Surplus Lines Tax & Stamping Office Filings
+       * Level 4: 7.4.2.1 Identify non-admitted/surplus lines transactions across state boundaries
+       * Level 4: 7.4.2.2 Calculate surplus lines taxes, stamping fees, and citizen assessments
+       * Level 4: 7.4.2.3 Generate stamping office data manifests and deliver electronic affidavits of non-availability
+8. Enterprise Risk Management (ERM) & Compliance
+ * Level 1: 8.0 Enterprise Risk Management & Compliance
+   * Level 2: 8.1 Risk Governance & Appetite Framework
+     * Level 3: 8.1.1 Risk Appetite Formulation & Monitoring
+       * Level 4: 8.1.1.1 Formulate quantitative Board-level risk tolerance limits across underwriting, credit, and market risks
+       * Level 4: 8.1.1.2 Monitor Key Risk Indicators (KRIs) against established warning and escalation thresholds
+       * Level 4: 8.1.1.3 Review and maintain internal risk registers and division-level risk heat maps
+     * Level 3: 8.1.2 Enterprise Capital Assessment & Stress Testing
+       * Level 4: 8.1.2.1 Model multi-peril compound catastrophe events across lines of business
+       * Level 4: 8.1.2.2 Perform reverse stress tests to assess threats to ongoing enterprise solvency
+       * Level 4: 8.1.2.3 Publish internal capital allocation models based on Economic Capital (EC) benchmarks
+   * Level 2: 8.2 Compliance, Ethics & Market Conduct
+     * Level 3: 8.2.1 Market Conduct Examination Support
+       * Level 4: 8.2.1.1 Audit underwriter rate applications, surcharge practices, and declination reasoning
+       * Level 4: 8.2.1.2 Evaluate claim turnaround times, prompt-payment compliance, and explanation-of-benefits clarity
+       * Level 4: 8.2.1.3 Assemble sample file populations for state insurance department market conduct examiners
+     * Level 3: 8.2.2 Sanctions, AML & Politically Exposed Persons (PEP)
+       * Level 4: 8.2.2.1 Run policyholders, payees, and vendors against OFAC, PEP, and global watchlists
+       * Level 4: 8.2.2.2 Escalate positive matches for real-time transaction blocking and asset freezing
+       * Level 4: 8.2.2.3 File Suspicious Activity Reports (SARs) with financial intelligence units (e.g., FinCEN)
+     * Level 3: 8.2.3 Privacy, Consumer Rights & Complaints Management
+       * Level 4: 8.2.3.1 Log and triage consumer complaints received directly or routed via insurance commissioners
+       * Level 4: 8.2.3.2 Enforce privacy regulations (e.g., GLBA, CCPA/CPRA, GDPR) across consumer data flows
+       * Level 4: 8.2.3.3 Track dispute resolutions, calculate compliance scorecards, and implement corrective actions
+   * Level 2: 8.3 Internal Audit & Internal Controls
+     * Level 3: 8.3.1 Financial & Operational Controls Assessment
+       * Level 4: 8.3.1.1 Test Model Audit Rule (MAR) and SOX Section 404 internal financial reporting controls
+       * Level 4: 8.3.1.2 Audit underwriting binding authority and claim settlement limit delegation logs
+       * Level 4: 8.3.1.3 Track deficiency remediations, audit exceptions, and executive reporting cycles
